@@ -1,4 +1,5 @@
 <template name="locationsIndex">
+  <!--Search Box-->
   <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <div class="input-group">
@@ -10,4 +11,62 @@
       </div>
     </div>
   </div>
+  <!--Map-->
+  <div class="row">
+    <div class="col-xs-12">
+      <hr>
+      <div class="map-container">
+        {{> locationsIndexMap}}
+      </div>
+      <hr>
+    </div>
+  </div>
+  <!--Locations List-->
+  {{> locationsIndexLocation}}
+</template>
+
+<template name="locationsIndexMap">
+  {{> googleMap name="map" options=mapOptions}}
+</template>
+
+<template name="locationsIndexLocation">
+  <h2 class="text-center">Locations</h2>
+  <!--forEach-->
+  {{#each getBusinesses}}
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{businessName}}</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-xs-4 col-sm-2">
+                <img class="img-responsive" src="img/logos/{{businessLogo}}">
+              </div>
+              <div class="col-xs-8 col-sm-10">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <address>
+                      {{businessAddressStreet1}}<br>
+                      {{#if businessAddressStreet2}}
+                        {{businessAddressStreet2}}<br>
+                      {{/if}}
+                      {{businessAddressCity}}, {{businessAddressState}}
+                      {{businessAddressZip}}<br>
+                      <abbr title="Phone">P:</abbr> (123) 456-7890
+                    </address>
+                  </div>
+                  <div class="col-xs-12">
+                    <button type="button" class="btn btn-primary">Menu</button>
+                    <button type="button" class="btn btn-primary">Order</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/each}}
 </template>
