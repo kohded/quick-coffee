@@ -58,8 +58,15 @@
                     </address>
                   </div>
                   <div class="col-xs-12">
-                    <button type="button" class="btn btn-primary">Menu</button>
-                    <button type="button" class="btn btn-primary">Order</button>
+                    <a href="{{pathFor 'menuIndex' businessId=businessId
+                    businessName=businessName}}">
+                      <button type="button" class="btn btn-primary">Menu
+                      </button>
+                    </a>
+                    <a href="{{pathFor 'menuIndex'}}">
+                      <button type="button" class="btn btn-primary">Order
+                      </button>
+                    </a>
                   </div>
                 </div>
               </div>

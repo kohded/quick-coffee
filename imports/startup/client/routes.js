@@ -4,6 +4,7 @@ import '../../ui/home/index.js';
 import '../../ui/register/index.js';
 import '../../ui/signin/index.js';
 import '../../ui/locations/index.js';
+import '../../ui/menu/index.js';
 
 Router.configure({
   layoutTemplate: 'layout'
@@ -23,4 +24,8 @@ Router.route('/signin', {
 
 Router.route('/locations', {
   name: "locationsIndex"
+});
+
+Router.route('/:businessName/menu', {
+  name: "menuIndex"
 });
