@@ -22,4 +22,3 @@ insecure                # Allow all DB writes from clients (for prototyping)
 twbs:bootstrap
 session
 iron:router
-materialize:materialize
