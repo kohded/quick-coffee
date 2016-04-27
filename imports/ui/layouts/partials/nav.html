@@ -1,27 +1,26 @@
 <template name="layoutsPartialsNav">
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed"
-                data-toggle="collapse" data-target="#navbar"
-                aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="{{pathFor 'homeIndex'}}">Quick Coffee</a>
+  <div class="navbar-fixed navbar">
+    <nav class="primary-color">
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="{{pathFor 'homeIndex'}}"
+             class="brand-logo left">Quick Coffee</a>
+          <ul class="hide-on-small-and-down right">
+            <li><a href="{{pathFor 'locationsIndex'}}">Locations</a></li>
+            <li><a href="{{pathFor 'signinIndex'}}">Sign In</a></li>
+            <li><a href="{{pathFor 'registerIndex'}}">Register</a></li>
+          </ul>
+          <!--Mobile-->
+          <a href="#" data-activates="mobile-demo"
+             class="button-collapse right"><i
+            class="hide-on-med-and-up material-icons right">menu</i></a>
+          <ul class="side-nav" id="mobile-demo">
+            <li><a href="{{pathFor 'locationsIndex'}}">Locations</a></li>
+            <li><a href="{{pathFor 'signinIndex'}}">Sign In</a></li>
+            <li><a href="{{pathFor 'registerIndex'}}">Register</a></li>
+          </ul>
+        </div>
       </div>
-      <div id="navbar" class="navbar-collapse collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="active">
-            <a href="{{pathFor 'locationsIndex'}}">Locations</a></li>
-          <li class="active">
-            <a href="{{pathFor 'signinIndex'}}">Sign In</a></li>
-          <li class="active">
-            <a href="{{pathFor 'registerIndex'}}">Register</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 </template>

@@ -1,79 +1,87 @@
 <template name="locationsIndex">
   <!--Search Box-->
   <div class="row">
-    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-      <div class="input-group">
-        <input type="text" class="form-control"
-               placeholder="Cit, State, or Zip">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Search</button>
-      </span>
+    <form class="col s12 col m8 offset-m2">
+      <div class="input-field">
+        <label for="location">Cit, State, or Zip</label>
+        <input id="location" type="text" class="validate">
       </div>
-    </div>
+    </form>
   </div>
+
   <!--Map-->
-  <div class="row">
-    <div class="col-xs-12">
-      <hr>
-      <div class="map-container">
-        {{> locationsIndexMap}}
-      </div>
-      <hr>
-    </div>
-  </div>
+  {{> locationsIndexMap}}
+  <div class="divider"></div>
+
   <!--Locations List-->
   {{> locationsIndexLocation}}
+  <div class="divider"></div>
+
+  <!--Pagination-->
+  {{> locationIndexPagination}}
 </template>
 
 <template name="locationsIndexMap">
-  {{> googleMap name="map" options=mapOptions}}
-</template>
-
-<template name="locationsIndexLocation">
-  <h2 class="text-center">Locations</h2>
-  <!--forEach-->
-  {{#each getBusinesses}}
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">{{businessName}}</h3>
-          </div>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-xs-4 col-sm-2">
-                <img class="img-responsive" src="img/logos/{{businessLogo}}">
-              </div>
-              <div class="col-xs-8 col-sm-10">
-                <div class="row">
-                  <div class="col-xs-12">
-                    <address>
-                      {{businessAddressStreet1}}<br>
-                      {{#if businessAddressStreet2}}
-                        {{businessAddressStreet2}}<br>
-                      {{/if}}
-                      {{businessAddressCity}}, {{businessAddressState}}
-                      {{businessAddressZip}}<br>
-                      <abbr title="Phone">P:</abbr> {{businessPhone}}
-                    </address>
-                  </div>
-                  <div class="col-xs-12">
-                    <a href="{{pathFor 'menuIndex' businessId=businessId
-                    businessName=businessName}}" id="viewMenu">
-                      <button type="button" class="btn btn-primary">Menu
-                      </button>
-                    </a>
-                    <a href="{{pathFor 'menuIndex'}}">
-                      <button type="button" class="btn btn-primary">Order
-                      </button>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  <div class="row">
+    <div class="col s12">
+      <div class="card-panel">
+        <div class="map-container">
+          {{> googleMap name="map" options=mapOptions}}
         </div>
       </div>
     </div>
-  {{/each}}
+  </div>
+</template>
+
+<template name="locationsIndexLocation">
+  <div class="row">
+    <div class="col s12">
+      <h4 class="text-center">Locations</h4>
+    </div>
+    {{#each getBusinesses}}
+      <div class="col s12 m6 l4">
+        <h5>{{businessName}}</h5>
+        <img class="responsive-img" src="img/logos/{{businessLogo}}">
+        <div class="col s12">
+          <address>
+            {{businessAddressStreet1}}
+            {{#if businessAddressStreet2}}
+              {{businessAddressStreet2}}<br>
+            {{else}}
+              <br>
+            {{/if}}
+            {{businessAddressCity}}, {{businessAddressState}}
+            {{businessAddressZip}}<br>
+            <abbr title="Phone">P:</abbr> {{businessPhone}}
+          </address>
+        </div>
+        <div class="col s12">
+          <hr>
+          <a href="{{pathFor 'menuIndex'}}" id="viewMenu"
+             class="btn waves-effect waves-green light-green lighten-1">Menu
+          </a>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</template>
+
+<template name="locationIndexPagination">
+  <div class="row">
+    <div class="col s12">
+      <ul class="pagination center">
+        <li class="disabled">
+          <a href="#!"><i class="material-icons">chevron_left</i></a>
+        </li>
+        <li class="waves-effect waves-green light-green lighten-1">
+          <a href="#!">1</a></li>
+        <li class="waves-effect"><a href="#!">2</a></li>
+        <li class="waves-effect"><a href="#!">3</a></li>
+        <li class="waves-effect"><a href="#!">4</a></li>
+        <li class="waves-effect"><a href="#!">5</a></li>
+        <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
