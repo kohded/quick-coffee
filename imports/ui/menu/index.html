@@ -2,6 +2,13 @@
   <div class="row">
     <div class="col-xs-12">
       <!--have different templates if business else customer-->
+      {{> menuIndexMenu}}
     </div>
   </div>
+</template>
+
+<template name="menuIndexMenu">
+  {{#with getMenu}}
+    <h2>{{businessId}}</h2>
+  {{/with}}
 </template>

@@ -54,12 +54,12 @@
                       {{/if}}
                       {{businessAddressCity}}, {{businessAddressState}}
                       {{businessAddressZip}}<br>
-                      <abbr title="Phone">P:</abbr> (123) 456-7890
+                      <abbr title="Phone">P:</abbr> {{businessPhone}}
                     </address>
                   </div>
                   <div class="col-xs-12">
                     <a href="{{pathFor 'menuIndex' businessId=businessId
-                    businessName=businessName}}">
+                    businessName=businessName}}" id="viewMenu">
                       <button type="button" class="btn btn-primary">Menu
                       </button>
                     </a>
