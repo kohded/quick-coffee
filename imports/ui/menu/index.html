@@ -1,14 +1,31 @@
 <template name="menuIndex">
-  <div class="row">
-    <div class="col-xs-12">
-      <!--have different templates if business else customer-->
-      {{> menuIndexMenu}}
+    <div class="row">
+        <div class="col-xs-12">
+            <!--have different templates if business else customer-->
+            {{> menuIndexMenu}}
+        </div>
     </div>
-  </div>
 </template>
 
 <template name="menuIndexMenu">
-  {{#with getMenu}}
-    <h2>{{businessId}}</h2>
-  {{/with}}
+    {{#with getMenu}}
+        <h3>We carry
+            {{drinkSizeCount drinkSize}}
+            different drink sizes.</h3>
+        <ul>
+            {{#each drinkSize}}
+                <li>
+                    {{this}}
+                </li>
+            {{/each}}
+        </ul>
+
+        <h3>Menu</h3>
+
+        {{#each drinkType}}
+            <li>
+                {{this}}
+            </li>
+        {{/each}}
+    {{/with}}
 </template>
