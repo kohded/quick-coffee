@@ -32,6 +32,15 @@ Template.locationsIndexMap.helpers({
   }
 });
 
+Template.locationsIndexLocation.events({
+  'click #viewMenu': function(event) {
+    //prevent the form from refreshing the page
+    //event.preventDefault();
+
+    Session.set('thisBusinessId', this.businessId);
+  }
+});
+
 //Template - locationsIndexLocation
 Template.locationsIndexLocation.onCreated(function() {
   Session.setDefault('businesses', businesses);
