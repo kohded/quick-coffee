@@ -18,5 +18,9 @@ Template.menuIndexMenu.helpers({
   },
   drinkSizeCount: function(arr){
     return arr.length;
+  },
+  businessInfo: function(){
+     var businessInfo = Session.get('businessInfo');
+     return businessInfo;
   }
 });

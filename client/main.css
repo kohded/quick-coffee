@@ -3,6 +3,19 @@
   margin-bottom : 40px;
 }
 
+/*UI - MENU*/
+/*Styles for menu images*/
+.menu-drink-img{
+  width: 25%;
+  margin-right: 2%;
+  border: 2px black solid;
+  border-radius: 5px;
+}
+
+.clearfix {
+  overflow: auto;
+}
+
 /*UI - LOCATIONS*/
 /*Search input underline color*/
 .input-field input[type=text]:focus {

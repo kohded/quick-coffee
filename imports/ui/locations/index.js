@@ -38,6 +38,7 @@ Template.locationsIndexLocation.events({
     //event.preventDefault();
 
     Session.set('thisBusinessId', this.businessId);
+    Session.set('businessInfo', this);
   }
 });
 

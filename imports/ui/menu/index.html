@@ -1,29 +1,32 @@
 <template name="menuIndex">
-  <div class="row">
-    <div class="col s12">
-      {{> menuIndexMenu}}
+    <div class="row">
+        <div class="col s12">
+            {{> menuIndexMenu}}
+        </div>
     </div>
-  </div>
 </template>
 
 <template name="menuIndexMenu">
-  {{#with getMenu}}
-    <h3>We carry
-      {{drinkSizeCount drinkSize}}
-        different drink sizes.</h3>
-    <ul>
-      {{#each drinkSize}}
-        <li>
-          {{this}}
-        </li>
-      {{/each}}
-    </ul>
+    {{#with getMenu}} {{#with businessInfo}}
+    <h2 class="center-align">
+    {{businessName}}'s Menu</h2> {{/with}}
 
-    <h3>Menu</h3>
-    {{#each drinkType}}
-      <li>
-        {{this}}
-      </li>
-    {{/each}}
-  {{/with}}
+    <div class="center-align">
+        <ul class="collection">
+            {{#each drink}}
+            <li class="collection-item avatar">
+
+                    <img class="col s2 menu-drink-img left" src="/business-img/{{drinkImg}}"/>
+                    <h3 class="title">{{drinkName}}</h3>
+                    <p class="left-align">{{drinkDescription}}</p>
+                    <h5>${{drinkPrice}}</h5>
+                    <button class="right btn">Order</button>
+                    <br  />
+                    <br  />
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+
+    {{/with}}
 </template>
