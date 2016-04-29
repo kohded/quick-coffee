@@ -1,13 +1,6 @@
 <template name="locationsIndex">
-  <!--Search Box-->
-  <div class="row">
-    <form class="col s12 col m8 offset-m2">
-      <div class="input-field">
-        <label for="location">Cit, State, or Zip</label>
-        <input id="location" type="text" class="validate">
-      </div>
-    </form>
-  </div>
+  <!--Search Input-->
+  {{> locationsIndexSearchInput}}
 
   <!--Map-->
   {{> locationsIndexMap}}
@@ -21,12 +14,27 @@
   {{> locationIndexPagination}}
 </template>
 
+<template name="locationsIndexSearchInput">
+  <div class="row">
+    <form class="col s12 col m8 offset-m2" id="search-locations">
+      <div class="input-field">
+        <label for="location">Cit, State, or Zip</label>
+        <input id="location" type="text" class="validate" placeholder="">
+      </div>
+    </form>
+  </div>
+</template>
+
 <template name="locationsIndexMap">
   <div class="row">
     <div class="col s12">
       <div class="card-panel">
         <div class="map-container">
-          {{> googleMap name="map" options=mapOptions}}
+          {{#unless geolocationError}}
+            {{> googleMap name="map" options=mapOptions}}
+          {{else}}
+            Failed to find your location: {{geolocationError}}
+          {{/unless}}
         </div>
       </div>
     </div>

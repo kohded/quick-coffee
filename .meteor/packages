@@ -23,3 +23,5 @@ session
 iron:router
 dburles:google-maps
 materialize:materialize
+jeremy:geocomplete
+mdg:geolocation
