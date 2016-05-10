@@ -8,27 +8,42 @@
           <ul class="hide-on-small-and-down right">
             <li><a href="{{pathFor 'locationsIndex'}}">Locations</a></li>
             {{#if currentUser}}
-              <li><a href="#" class="logout">Logout</a></li>
+              {{> layoutsPartialsNavDropdownSignedIn}}
             {{else}}
               <li><a href="{{pathFor 'signinIndex'}}">Sign In</a></li>
               <li><a href="{{pathFor 'registerIndex'}}">Register</a></li>
             {{/if}}
           </ul>
-          <!--Mobile-->
-          <a href="#" data-activates="mobile-demo"
-             class="button-collapse right"><i
-            class="hide-on-med-and-up material-icons right">menu</i></a>
-          <ul class="side-nav" id="mobile-demo">
-            <li><a href="{{pathFor 'locationsIndex'}}">Locations</a></li>
-            {{#if currentUser}}
-              <li><a href="#" class="logout">Logout</a></li>
-            {{else}}
-              <li><a href="{{pathFor 'signinIndex'}}">Sign In</a></li>
-              <li><a href="{{pathFor 'registerIndex'}}">Register</a></li>
-            {{/if}}
-          </ul>
+          {{> layoutsPartialsNavMobile}}
         </div>
       </div>
     </nav>
+    <!--Dropdown-->
+    <ul id="dropdown" class="dropdown-content">
+      <li><a href="#!">Account</a></li>
+      <li class="divider"></li>
+      <li><a href="#" class="logout">Logout</a></li>
+    </ul>
   </div>
+</template>
+
+<!--Dropdown needs to be in its own template when if currentUser is used.-->
+<template name="layoutsPartialsNavDropdownSignedIn">
+  <li><a class="dropdown-button" href="#!" data-activates="dropdown">
+    {{currentUser.username}}<i class="material-icons right">arrow_drop_down</i>
+  </a></li>
+</template>
+
+<template name="layoutsPartialsNavMobile">
+  <a href="#" data-activates="mobile-demo" class="button-collapse right">
+    <i class="hide-on-med-and-up material-icons right">menu</i></a>
+  <ul class="side-nav" id="mobile-demo">
+    <li><a href="{{pathFor 'locationsIndex'}}">Locations</a></li>
+    {{#if currentUser}}
+      <li><a href="#" class="logout">Logout</a></li>
+    {{else}}
+      <li><a href="{{pathFor 'signinIndex'}}">Sign In</a></li>
+      <li><a href="{{pathFor 'registerIndex'}}">Register</a></li>
+    {{/if}}
+  </ul>
 </template>
