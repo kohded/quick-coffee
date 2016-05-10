@@ -7,8 +7,12 @@
              class="brand-logo left">Quick Coffee</a>
           <ul class="hide-on-small-and-down right">
             <li><a href="{{pathFor 'locationsIndex'}}">Locations</a></li>
-            <li><a href="{{pathFor 'signinIndex'}}">Sign In</a></li>
-            <li><a href="{{pathFor 'registerIndex'}}">Register</a></li>
+            {{#if currentUser}}
+              <li><a href="#" class="logout">Logout</a></li>
+            {{else}}
+              <li><a href="{{pathFor 'signinIndex'}}">Sign In</a></li>
+              <li><a href="{{pathFor 'registerIndex'}}">Register</a></li>
+            {{/if}}
           </ul>
           <!--Mobile-->
           <a href="#" data-activates="mobile-demo"
@@ -16,8 +20,12 @@
             class="hide-on-med-and-up material-icons right">menu</i></a>
           <ul class="side-nav" id="mobile-demo">
             <li><a href="{{pathFor 'locationsIndex'}}">Locations</a></li>
-            <li><a href="{{pathFor 'signinIndex'}}">Sign In</a></li>
-            <li><a href="{{pathFor 'registerIndex'}}">Register</a></li>
+            {{#if currentUser}}
+              <li><a href="#" class="logout">Logout</a></li>
+            {{else}}
+              <li><a href="{{pathFor 'signinIndex'}}">Sign In</a></li>
+              <li><a href="{{pathFor 'registerIndex'}}">Register</a></li>
+            {{/if}}
           </ul>
         </div>
       </div>

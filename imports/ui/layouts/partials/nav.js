@@ -6,3 +6,13 @@ Template.layoutsPartialsNav.onRendered(function() {
     menuWidth   : 200
   });
 });
+
+Template.layoutsPartialsNav.events({
+  'click .logout': function(event){
+    event.preventDefault();
+
+    AccountsTemplates.logout();
+
+    Router.go('signinIndex');
+  }
+});
