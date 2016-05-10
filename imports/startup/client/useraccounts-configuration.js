@@ -1,10 +1,22 @@
 import { AccountsTemplates } from 'meteor/useraccounts:core';
 
 AccountsTemplates.configure({
+  // Behavior
   confirmPassword: true,
   enablePasswordChange: true,
   sendVerificationEmail: true,
+  focusFirstInput: true,
+
+  //Appearance
   showForgotPasswordLink: true,
+  showResendVerificationEmailLink: true,
+
+  //Client-side Validation
+  continuousValidation:true,
+  negativeValidation: true,
+  showValidating: true,
+
+  //Texts
   texts: {
     signInLink_link: 'Sign In',
     title: {

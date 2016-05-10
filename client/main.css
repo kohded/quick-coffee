@@ -3,17 +3,40 @@
   margin-bottom : 40px;
 }
 
+/*UI - FOOTER*/
+/*Sticky footer*/
+body {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction :column;
+  -ms-flex-direction: column;
+  /*flex-direction: column;*/
+}
+
+.main {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+}
+/*Sticky footer*/
+
 /*UI - MENU*/
 /*Styles for menu images*/
-.menu-drink-img{
-  width: 25%;
-  margin-right: 2%;
-  border: 2px black solid;
-  border-radius: 5px;
+.menu-drink-img {
+  width         : 25%;
+  margin-right  : 2%;
+  border        : 2px black solid;
+  border-radius : 5px;
 }
 
 .clearfix {
-  overflow: auto;
+  overflow : auto;
 }
 
 /*UI - LOCATIONS*/
@@ -25,8 +48,12 @@
 }
 
 /*GLOBAL*/
+a {
+  color: #9CCC65;
+}
+
 .primary-color {
-  background-color : #42A5F5; /*blue lighten-1*/
+  background-color : #64B5F6; /*blublue lighten-2*/
 }
 
 .secondary-color {
@@ -34,11 +61,7 @@
 }
 
 .accent-color {
-  background-color : #2979FF; /*blue accent-3*/
-}
-
-.rounded-corners {
-  border-radius : 4px;
+  background-color : #757575; /*grey darken-1*/
 }
 
 .input-field input[type=text]:focus {
@@ -51,4 +74,8 @@
 
 .input-field input[type=password]:focus {
   border-bottom : 1px solid #9CCC65;
+}
+
+.rounded-corners {
+  border-radius : 4px;
 }

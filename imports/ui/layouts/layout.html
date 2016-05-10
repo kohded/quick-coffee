@@ -1,4 +1,5 @@
 <template name="layout">
-  {{> layoutsPartialsNav}}
-  {{> layoutsPartialsBody}}
+  {{> yield region='layoutsPartialsNav'}}
+  {{> layoutsPartialsMain}}
+  {{> yield region='layoutsPartialsFooter'}}
 </template>

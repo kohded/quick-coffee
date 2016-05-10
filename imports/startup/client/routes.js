@@ -7,7 +7,11 @@ import '../../ui/locations/index.js';
 import '../../ui/menu/index.js';
 
 Router.configure({
-  layoutTemplate: 'layout'
+  layoutTemplate: 'layout',
+  yieldTemplates: {
+    layoutsPartialsNav   : {to: 'layoutsPartialsNav'},
+    layoutsPartialsFooter: {to: 'layoutsPartialsFooter'}
+  }
 });
 
 Router.route('/', {
@@ -34,6 +38,10 @@ AccountsTemplates.configureRoute('changePwd');
 AccountsTemplates.configureRoute('enrollAccount');
 AccountsTemplates.configureRoute('forgotPwd');
 AccountsTemplates.configureRoute('resetPwd');
-AccountsTemplates.configureRoute('signUp');
-AccountsTemplates.configureRoute('signIn');
 AccountsTemplates.configureRoute('verifyEmail');
+AccountsTemplates.configureRoute('signUp', {
+  redirect: '/locations'
+});
+AccountsTemplates.configureRoute('signIn', {
+  redirect: '/locations'
+});
