@@ -38,5 +38,11 @@ AccountsTemplates.addFields([
     re: /.+@(.+){2,}\.(.+){2,}/,
     errStr: 'Invalid email'
   },
+  {
+    _id: 'username_and_email',
+    type: 'text',
+    required: true,
+    displayName: "Username or Email"
+  },
   pwd
 ]);

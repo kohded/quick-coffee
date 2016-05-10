@@ -11,21 +11,29 @@ Router.configure({
 });
 
 Router.route('/', {
-  name: "homeIndex"
+  name: 'homeIndex'
 });
 
 Router.route('/register', {
-  name: "registerIndex"
+  name: 'registerIndex'
 });
 
 Router.route('/signin', {
-  name: "signinIndex"
+  name: 'signinIndex'
 });
 
 Router.route('/locations', {
-  name: "locationsIndex"
+  name: 'locationsIndex'
 });
 
 Router.route('/:businessName/menu', {
-  name: "menuIndex"
+  name: 'menuIndex'
 });
+
+AccountsTemplates.configureRoute('changePwd');
+AccountsTemplates.configureRoute('enrollAccount');
+AccountsTemplates.configureRoute('forgotPwd');
+AccountsTemplates.configureRoute('resetPwd');
+AccountsTemplates.configureRoute('signUp');
+AccountsTemplates.configureRoute('signIn');
+AccountsTemplates.configureRoute('verifyEmail');

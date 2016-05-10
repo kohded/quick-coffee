@@ -27,3 +27,4 @@ jeremy:geocomplete
 mdg:geolocation
 accounts-password
 useraccounts:materialize
+useraccounts:iron-routing
