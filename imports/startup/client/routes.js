@@ -5,6 +5,7 @@ import '../../ui/register/index.js';
 import '../../ui/signin/index.js';
 import '../../ui/locations/index.js';
 import '../../ui/menu/index.js';
+import '../../ui/dashboard/index.js';
 
 Router.configure({
   layoutTemplate: 'layout',
@@ -30,6 +31,10 @@ Router.route('/locations', {
   name: 'locationsIndex'
 });
 
+Router.route('/dashboard', {
+  name: 'dashboardIndex'
+});
+
 Router.route('/:businessName/menu', {
   name: 'menuIndex'
 });
@@ -40,7 +45,7 @@ AccountsTemplates.configureRoute('forgotPwd');
 AccountsTemplates.configureRoute('resetPwd');
 AccountsTemplates.configureRoute('verifyEmail');
 AccountsTemplates.configureRoute('signUp', {
-  redirect: '/locations'
+  redirect: '/dashboard'
 });
 AccountsTemplates.configureRoute('signIn', {
   redirect: '/locations'

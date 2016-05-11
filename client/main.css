@@ -6,24 +6,25 @@
 /*UI - FOOTER*/
 /*Sticky footer*/
 body {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  min-height: 100vh;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -webkit-flex-direction :column;
-  -ms-flex-direction: column;
-  /*flex-direction: column;*/
+  display                : -webkit-box;
+  display                : -webkit-flex;
+  display                : -ms-flexbox;
+  display                : flex;
+  min-height             : 100vh;
+  -webkit-box-orient     : vertical;
+  -webkit-box-direction  : normal;
+  -webkit-flex-direction : column;
+  -ms-flex-direction     : column;
+  flex-direction         : column;
 }
 
 .main {
-  -webkit-box-flex: 1;
-  -webkit-flex: 1 0 auto;
-  -ms-flex: 1 0 auto;
-  flex: 1 0 auto;
+  -webkit-box-flex : 1;
+  -webkit-flex     : 1 0 auto;
+  -ms-flex         : 1 0 auto;
+  flex             : 1 0 auto;
 }
+
 /*Sticky footer*/
 
 /*UI - MENU*/
@@ -47,9 +48,28 @@ body {
   height    : 500px;
 }
 
+/*UI - DASHBOARD*/
+/*Prevent tab navigation scrollbar*/
+.tabs {
+  margin-bottom : 40px;
+  overflow-x    : hidden;
+}
+
+.tabs .tab a {
+  color : #9CCC65;
+}
+
+.tabs .tab a:hover {
+  color : #C5E1A5; /*light-green lighten-3*/
+}
+
+.tabs .indicator {
+  background-color : #9CCC65;
+}
+
 /*GLOBAL*/
 a {
-  color: #9CCC65;
+  /*color: #9CCC65;*/
 }
 
 .primary-color {

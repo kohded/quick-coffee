@@ -1,0 +1,27 @@
+<template name="dashboardIndex">
+  <div class="row">
+    <div class="col s12">
+      {{> dashboardIndexTabs}}
+    </div>
+
+    <div id="account" class="col s12">{{> dashboardIndexAccount}}</div>
+    <div id="menu" class="col s12">{{> dashboardIndexMenu}}</div>
+  </div>
+</template>
+
+<template name="dashboardIndexTabs">
+  <ul class="tabs">
+    <li class="tab"><a href="#account" class="">Account</a></li>
+    <li class="tab"><a href="#menu" class="active">Menu</a></li>
+  </ul>
+</template>
+
+<template name="dashboardIndexAccount">
+  <h3>Account</h3>
+  <div class="divider"></div>
+</template>
+
+<template name="dashboardIndexMenu">
+  <h3>Menu</h3>
+  <div class="divider"></div>
+</template>
