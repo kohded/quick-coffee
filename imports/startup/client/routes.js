@@ -23,6 +23,10 @@ Router.route('/register', {
   name: 'registerIndex'
 });
 
+Router.route('/register-business', {
+  name: 'registerIndexBusiness'
+});
+
 Router.route('/signin', {
   name: 'signinIndex'
 });

@@ -1,6 +1,8 @@
 import { Template } from 'meteor/templating';
 
-import '../../api/businesses.js';
+import { Businesses } from '../../api/businesses/businesses.js';
+
+import '../../api/businesses/businesses.js';
 
 import './index.html';
 
@@ -12,9 +14,9 @@ Template.locationsIndexSearchInput.onRendered(function() {
 
     //Set map options.
     if(GoogleMaps.loaded() && latLng) {
-      $("#location").geocomplete({
+      $('#location').geocomplete({
         location     : new google.maps.LatLng(latLng.lat, latLng.lng),
-        map          : $(".map-container"),
+        map          : $('.map-container'),
         mapOptions   : {
           zoom       : 14,
           scrollwheel: false
@@ -58,6 +60,6 @@ Template.locationsIndexLocation.events({
 
 Template.locationsIndexLocation.helpers({
   getBusinesses: function() {
-    return Session.get('businesses');
+    return Businesses.find();
   }
 });
