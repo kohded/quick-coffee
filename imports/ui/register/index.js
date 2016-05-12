@@ -29,6 +29,9 @@ Template.registerIndexBusiness.events({
       dateRegistered      : new Date()
     });
 
+    //Assign business role when registering business.
+    Meteor.call('assignBusinessRole', userId);
+
     Router.go('dashboardIndex');
   }
 });

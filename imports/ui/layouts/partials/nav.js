@@ -15,8 +15,6 @@ Template.layoutsPartialsNav.events({
     // doesn't work if you log right back in without refresh.
     //location.reload(true); //Seems slower
     Meteor._reload.reload();
-
-    Router.go('signinIndex');
   }
 });
 
