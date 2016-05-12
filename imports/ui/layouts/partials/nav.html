@@ -40,6 +40,8 @@
   <ul class="side-nav" id="mobile-demo">
     <li><a href="{{pathFor 'locationsIndex'}}">Locations</a></li>
     {{#if currentUser}}
+      <li><a href="{{pathFor 'dashboardIndex'}}">Dashboard</a></li>
+      <li class="divider"></li>
       <li><a href="#" class="logout">Logout</a></li>
     {{else}}
       <li><a href="{{pathFor 'signinIndex'}}">Sign In</a></li>
