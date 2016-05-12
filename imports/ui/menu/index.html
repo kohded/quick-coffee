@@ -7,7 +7,7 @@
 </template>
 
 <template name="menuIndexMenu">
-    {{#with getMenu}} {{#with businessInfo}}
+    {{> menuForm}} {{#with getMenu}} {{#with businessInfo}}
     <h2 class="center-align">
     {{businessName}}'s Menu</h2> {{/with}}
 
@@ -16,17 +16,85 @@
             {{#each drink}}
             <li class="collection-item avatar">
 
-                    <img class="col s2 menu-drink-img left" src="/business-img/{{drinkImg}}"/>
-                    <h3 class="title">{{drinkName}}</h3>
-                    <p class="left-align">{{drinkDescription}}</p>
-                    <h5>${{drinkPrice}}</h5>
-                    <button class="right btn">Order</button>
-                    <br  />
-                    <br  />
+                <img class="col s2 menu-drink-img left" src="/business-img/{{drinkImg}}" />
+                <h3 class="title">{{drinkName}}</h3>
+                <p class="left-align">{{drinkDescription}}</p>
+                <h5>${{drinkPrice}}</h5>
+                <button class="right btn">Order</button>
+                <br />
+                <br />
             </li>
             {{/each}}
         </ul>
     </div>
 
     {{/with}}
+</template>
+
+<template name="menuForm">
+    <div class=" col s8 offset-s2">
+
+        <h3>Menu Builder</h3>
+        <p>
+            This form is used to build your menu one item at a time.
+        </p>
+
+        <form class="card-panel clearfix">
+            <div class="card-panel">
+                <h5><b><i>Drink Information</i></b></h5>
+
+                <input placeholder="Drink Name" id="drinkname" type="text" />
+
+                <label>Drink Description (Optional):</label>
+                <textarea></textarea>
+
+                <input placeholder="Drink Price (example 2.99)" id="drinkprice" type="text" />
+
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Image Upload</span>
+                        <input type="file" multiple>
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text" placeholder="Upload image of drink">
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-panel">
+                <h5><b><i>Available Drink Sizes</i></b></h5>
+
+                <input placeholder="Drink size (example: 12oz)" type="text" id="drinksize" value="">
+                {{#each drinkSizeInput}}
+
+                    {{{this}}}
+
+                {{/each}}
+
+
+                <button class="btn right-align" id="addMoreSizes" name="button">Add More Sizes</button>
+                <button class="btn right-align" id="removeASize" name="button">Remove A Size</button>
+            </div>
+
+            <div class="card-panel">
+                <h5><b><i>Available Drink Extras</i></b></h5>
+
+
+                <input placeholder="Drink Extra (example: whip cream)" type="text" name="name" value="">
+                {{#each drinkExtrasInput}}
+
+                    {{{this}}}
+
+                {{/each}}
+
+                <button class="btn right-align" id="addMoreExtras" name="button">Add More Extras</button>
+                <button class="btn right-align" id="removeAExtra" name="button">Remove A Extra</button>
+            </div>
+
+            <label>Special note to customer about drink (optional)</label>
+            <textarea  placeholder='Example: "This product contains peanuts."'></textarea>
+            <br /><br />
+            <input class="btn  col s12" type="submit" name="name" value="Add Drink">
+        </form>
+    </div>
 </template>
