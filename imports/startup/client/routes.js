@@ -35,7 +35,7 @@ Router.route('/locations', {
   name: 'locationsIndex'
 });
 
-Router.route('/dashboard', {
+Router.route('/:username/dashboard', {
   name: 'dashboardIndex'
 });
 
