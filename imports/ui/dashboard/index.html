@@ -1,30 +1,123 @@
 <template name="dashboardIndex">
-  <div class="row">
-    <div class="col s12">
-      {{> dashboardIndexTabs}}
-    </div>
+  {{#if currentUser}}
+    {{> dashboardIndexTabs}}
 
     <div id="account" class="col s12">{{> dashboardIndexAccount}}</div>
-    <div id="menu" class="col s12">{{> dashboardIndexMenu}}</div>
-  </div>
+
+    {{#if isInRole 'business'}}
+      <div id="menu" class="col s12">{{> dashboardIndexMenu}}</div>
+    {{/if}}
+  {{else}}
+    <div class="row">
+      <div class="col s12 col m8 offset-m2">
+        <h3>Please
+          <a href="{{pathFor 'signinIndex'}}">Sign In</a> or
+          <a href="{{pathFor 'registerIndex'}}">Register</a></h3>
+      </div>
+    </div>
+  {{/if}}
 </template>
 
 <template name="dashboardIndexTabs">
-  <ul class="tabs">
-    <li class="tab"><a href="#account" class="active">Account</a></li>
-    <li class="tab"><a href="#menu" class="">Menu</a></li>
-  </ul>
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab"><a href="#account" class="active">Account</a></li>
+        {{#if isInRole 'business'}}
+          <li class="tab"><a href="#menu" class="">Menu</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
 </template>
 
 <template name="dashboardIndexAccount">
-  <h3>Account</h3>
-  <div class="divider"></div>
-  <a  href="{{pathFor 'registerIndexBusiness'}}"
-      class="waves-effect waves-light btn light-green lighten-1">
-    <i class="material-icons left">location_on</i>Sell Coffee</a>
+  <div class="row">
+    <div class="col s12">
+      <h3>Account</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12">
+      <div class="divider"></div>
+      <h5>Update Info</h5>
+
+      <p><i class="material-icons left">contacts</i>
+        Username: {{currentUser.username}}</p>
+      <form class="col s12" role="form" id="update-username">
+        <div class="row">
+          <div class="input-field col s12 m8">
+            <label for="username">
+              Username
+            </label>
+            <input class="validate" type="text" id="username"
+                   name="username">
+          </div>
+          <div class="input-field col s12 m4">
+            <input type="submit"
+                   class="col s12 waves-effect waves-light btn light-green
+                  lighten-1">
+          </div>
+        </div>
+      </form>
+
+      <p><i class="material-icons left">email</i>
+        Email: {{currentUser.emails.[0].address}}</p>
+      <form class="col s12" role="form" id="update-email">
+        <div class="row">
+          <div class="input-field col s12 m8">
+            <label for="email">
+              Email
+            </label>
+            <input class="validate" type="text" id="email"
+                   name="email">
+          </div>
+          <div class="input-field col s12 m4">
+            <input type="submit"
+                   class="col s12 waves-effect waves-light btn light-green
+                  lighten-1">
+          </div>
+        </div>
+      </form>
+
+      <p><i class="material-icons left">vpn_key</i>Password</p>
+      <form class="col s12" role="form" id="update-password">
+        <div class="row">
+          <div class="input-field col s12 m8">
+            <label for="password">
+              Password
+            </label>
+            <input class="validate" type="password" id="password"
+                   name="password">
+          </div>
+          <div class="input-field col s12 m4">
+            <input type="submit"
+                   class="col s12 waves-effect waves-light btn light-green
+                  lighten-1">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col s12">
+      <div class="divider"></div>
+      <h5>Business</h5>
+      {{#if isInRole 'customer'}}
+        <a href="{{pathFor 'registerIndexBusiness'}}"
+           class="col s12 m4 waves-effect waves-light btn light-green lighten-1">
+          <i class="material-icons left">store</i>Sell Coffee</a>
+      {{/if}}
+    </div>
+  </div>
 </template>
 
 <template name="dashboardIndexMenu">
-  <h3>Menu</h3>
-  <div class="divider"></div>
+  <div class="row">
+    <div class="col s12">
+      <h3>Menu</h3>
+      <div class="divider"></div>
+    </div>
+  </div>
 </template>
