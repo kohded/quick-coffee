@@ -20,7 +20,11 @@
     </nav>
     <!--Dropdown-->
     <ul id="dropdown" class="dropdown-content">
-      <li><a href="{{currentUser.username}}/dashboard">Dashboard</a></li>
+      <li>
+        <a href="{{pathFor 'dashboardIndex' username=currentUser.username}}">
+          Dashboard
+        </a>
+      </li>
       <li class="divider"></li>
       <li><a href="#" class="logout">Logout</a></li>
     </ul>
