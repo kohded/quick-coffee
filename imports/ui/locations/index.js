@@ -2,8 +2,6 @@ import { Template } from 'meteor/templating';
 
 import { Businesses } from '../../api/businesses/businesses.js';
 
-import '../../api/businesses/businesses.js';
-
 import './index.html';
 
 //Template Search Input
@@ -44,18 +42,6 @@ Template.locationsIndexMap.onRendered(function() {
     key      : '',
     libraries: 'places'
   });
-});
-
-//Template - Locations List
-Template.locationsIndexLocation.onCreated(function() {
-  Session.setDefault('businesses', businesses);
-});
-
-Template.locationsIndexLocation.events({
-  'click #viewMenu': function(event) {
-    Session.set('thisBusinessId', this.businessId);
-    Session.set('businessInfo', this);
-  }
 });
 
 Template.locationsIndexLocation.helpers({
