@@ -1,14 +1,12 @@
-import {
-    Template
-} from 'meteor/templating';
-
-import '../../api/menu.js';
+import { Template } from 'meteor/templating';
 
 import './index.html';
 
+import { Businesses } from '../../api/businesses/businesses.js';
+
 //Template - menuIndexMenu
 Template.menuIndexMenu.onCreated(function() {
-    Session.setDefault('menu', menu);
+    Session.setDefault('menu', '');
 });
 
 Template.menuIndexMenu.helpers({
@@ -48,13 +46,14 @@ Template.menuForm.events({
         var counter = Session.get('counterDS');
         var forms = Session.get('drinkSizeForm');
 
-        var drinkSizeInput = '<input placeholder="Drink size (example: 12oz)" type="text" id="' + counter + '_drinksize" value="">';
+        var isDefined = $('#' + counter + '_drinkSize').val() ? $('#' + counter + '_drinkSize').val() : "";
+        var drinkSizeInput = '<input placeholder="Drink size (example: 12oz)" type="text" id="' + counter + '_drinkSize" value="' + isDefined + '">';
 
         forms.push(drinkSizeInput);
 
         counter++;
 
-        Session.set('counter', counter);
+        Session.set('counterDS', counter);
         Session.set('drinkSizeForm', forms);
     },
 
@@ -64,6 +63,8 @@ Template.menuForm.events({
         forms.splice(forms.length - 1, 1);
         Session.set('drinkSizeForm', forms);
 
+        alert(Meteor.userId());
+
     },
 
     'click #addMoreExtras': function(e) {
@@ -72,7 +73,9 @@ Template.menuForm.events({
         var counter = Session.get('counterDE');
         var forms = Session.get('drinkExtrasForm');
 
-        var drinkExtrasInput = '<input placeholder="Drink Extra (example: whip cream)" type="text" id="' + counter + '_drinkextra" value="">';
+        var isDefined = $('#' + counter + '_drinkExtra').val() ? $('#' + counter + '_drinkExtra').val() : "";
+
+        var drinkExtrasInput = '<input placeholder="Drink Extra (example: whip cream)" type="text" id="' + counter + '_drinkExtra" value="' + isDefined + '">';
 
         forms.push(drinkExtrasInput);
 
@@ -87,9 +90,71 @@ Template.menuForm.events({
         var forms = Session.get('drinkExtrasForm');
         forms.splice(forms.length - 1, 1);
         Session.set('drinkExtrasForm', forms);
+    },
 
+    'click #addDrink': function(e) {
+        e.preventDefault();
+
+        var drinkName = $('#drinkName').val();
+        var drinkDesc = $('#drinkDesc').val();
+        var drinkPrice = $('#drinkPrice').val();
+        var drinkSizes = [];
+        var drinkExtras = [];
+        var note = $('#note').val();
+
+        var firstDrinkSize = $('#drinkSize').val();
+
+        if(firstDrinkSize){
+            drinkSizes.push(firstDrinkSize);
+        }
+
+        for (var i = 0; i < Session.get('counterDS'); i++) {
+            var dynamicSizeInput = $('#' + i + '_drinkSize').val();
+
+            if (dynamicSizeInput) {
+                drinkSizes.push(dynamicSizeInput);
+            }
+        }
+
+
+        var firstDrinkExtra = $('#drinkExtra').val();
+
+        if(firstDrinkExtra){
+            drinkExtras.push(firstDrinkExtra);
+        }
+
+        for (var i = 0; i < Session.get('counterDE'); i++) {
+            var dynamicExtraInput = $('#' + i + '_drinkExtras').val();
+
+            if (dynamicExtraInput) {
+                drinkExtras.push(dynamicExtraInput);
+            }
+        }
+
+        var drink = {
+            name: drinkName,
+            description: drinkDesc,
+            price: drinkPrice,
+            sizes: drinkSizes,
+            extras: drinkExtras,
+            note: note
+        }
+
+        if(drinkName && firstDrinkSize && drinkPrice) {
+
+            var tempDrinkMenuArr = Businesses.findOne({_id : Meteor.userId()}).businessDrinkMenu;
+
+            tempDrinkMenuArr.push(drink);
+
+            Businesses.update({_id : Meteor.userId()}, {$set: {businessDrinkMenu : tempDrinkMenuArr}});
+
+        } else {
+            // validation of some sort
+        }
+
+
+        console.log(Businesses.findOne({_id : Meteor.userId()}));
     }
-
 });
 
 Template.menuForm.helpers({

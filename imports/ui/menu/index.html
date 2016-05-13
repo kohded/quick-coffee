@@ -36,19 +36,19 @@
 
         <h3>Menu Builder</h3>
         <p>
-            This form is used to build your menu one item at a time.
+            This form is used to build your menu one drink at a time.
         </p>
 
-        <form class="card-panel clearfix">
+        <div class="card-panel clearfix">
             <div class="card-panel">
                 <h5><b><i>Drink Information</i></b></h5>
 
-                <input placeholder="Drink Name" id="drinkname" type="text" />
+                <input placeholder="Drink Name" id="drinkName" type="text" />
 
                 <label>Drink Description (Optional):</label>
-                <textarea></textarea>
+                <textarea id="drinkDesc"></textarea>
 
-                <input placeholder="Drink Price (example 2.99)" id="drinkprice" type="text" />
+                <input placeholder="Drink Price (example 2.99)" id="drinkPrice" type="text" />
 
                 <div class="file-field input-field">
                     <div class="btn">
@@ -64,7 +64,7 @@
             <div class="card-panel">
                 <h5><b><i>Available Drink Sizes</i></b></h5>
 
-                <input placeholder="Drink size (example: 12oz)" type="text" id="drinksize" value="">
+                <input placeholder="Drink size (example: 12oz)" type="text" id="drinkSize" value="">
                 {{#each drinkSizeInput}}
 
                     {{{this}}}
@@ -80,7 +80,7 @@
                 <h5><b><i>Available Drink Extras</i></b></h5>
 
 
-                <input placeholder="Drink Extra (example: whip cream)" type="text" name="name" value="">
+                <input placeholder="Drink Extra (example: whip cream)" type="text" id="drinkExtra" value="">
                 {{#each drinkExtrasInput}}
 
                     {{{this}}}
@@ -92,9 +92,9 @@
             </div>
 
             <label>Special note to customer about drink (optional)</label>
-            <textarea  placeholder='Example: "This product contains peanuts."'></textarea>
+            <textarea  placeholder='Example: "This product contains peanuts."' id="note" ></textarea>
             <br /><br />
-            <input class="btn  col s12" type="submit" name="name" value="Add Drink">
-        </form>
+            <button class="btn col s12" id="addDrink">Add Drink</button>
+        </div>
     </div>
 </template>

@@ -16,6 +16,7 @@ Template.registerIndexBusiness.events({
     var businessAddressState = $('#business-address-state').val();
     var businessAddressZip   = $('#business-address-zip').val();
     var businessPhone        = $('#business-phone').val();
+    var businessDrinkMenu = [];
 
     Businesses.insert({
       _id                 : userId,
@@ -26,6 +27,7 @@ Template.registerIndexBusiness.events({
       businessAddressState: businessAddressState,
       businessAddressZip  : businessAddressZip,
       businessPhone       : businessPhone,
+      businessDrinkMenu :  businessDrinkMenu,
       dateRegistered      : new Date()
     });
 
