@@ -53,7 +53,8 @@ Template.locationsIndexLocation.onCreated(function() {
 
 Template.locationsIndexLocation.events({
   'click #viewMenu': function(event) {
-    Session.set('thisBusinessId', this.businessId);
+
+    Session.set('thisBusinessId', this._id);
     Session.set('businessInfo', this);
   }
 });

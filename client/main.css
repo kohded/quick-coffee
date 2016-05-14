@@ -28,13 +28,6 @@ body {
 /*Sticky footer*/
 
 /*UI - MENU*/
-/*Styles for menu images*/
-.menu-drink-img {
-  width         : 25%;
-  margin-right  : 2%;
-  border        : 2px black solid;
-  border-radius : 5px;
-}
 
 .clearfix {
   overflow : auto;

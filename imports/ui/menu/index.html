@@ -7,28 +7,30 @@
 </template>
 
 <template name="menuIndexMenu">
-    {{> menuForm}} {{#with getMenu}} {{#with businessInfo}}
-    <h2 class="center-align">
-    {{businessName}}'s Menu</h2> {{/with}}
+    {{> menuForm}}
+    <h2 class="center-align">{{businessName}}'s Menu</h2>
 
     <div class="center-align">
-        <ul class="collection">
-            {{#each drink}}
-            <li class="collection-item avatar">
+        <ul class="col s10 offset-s1">
+            {{#each getMenu}}
+            <li class="card-panel valign-wrapper clearfix">
 
-                <img class="col s2 menu-drink-img left" src="/business-img/{{drinkImg}}" />
-                <h3 class="title">{{drinkName}}</h3>
-                <p class="left-align">{{drinkDescription}}</p>
-                <h5>${{drinkPrice}}</h5>
-                <button class="right btn">Order</button>
-                <br />
-                <br />
+                <img class="col s4 responsive-img valign rounded-corners" src="/business-img/cappuccino.jpg" width="100%"/>
+
+                <div class="col s8 ">
+                    <h3 class="title">{{name}}</h3>
+                    <p class="left-align col s10 offset-s1">{{description}}</p>
+                    <h5 class="col s12"><b><i>${{price}}</i></b></h5>
+                    <button class="right btn">Order</button>
+                </div>
+
+
             </li>
             {{/each}}
         </ul>
     </div>
 
-    {{/with}}
+
 </template>
 
 <template name="menuForm">
@@ -64,12 +66,7 @@
             <div class="card-panel">
                 <h5><b><i>Available Drink Sizes</i></b></h5>
 
-                <input placeholder="Drink size (example: 12oz)" type="text" id="drinkSize" value="">
-                {{#each drinkSizeInput}}
-
-                    {{{this}}}
-
-                {{/each}}
+                <input placeholder="Drink size (example: 12oz)" type="text" id="drinkSize" value=""> {{#each drinkSizeInput}} {{{this}}} {{/each}}
 
 
                 <button class="btn right-align" id="addMoreSizes" name="button">Add More Sizes</button>
@@ -80,20 +77,16 @@
                 <h5><b><i>Available Drink Extras</i></b></h5>
 
 
-                <input placeholder="Drink Extra (example: whip cream)" type="text" id="drinkExtra" value="">
-                {{#each drinkExtrasInput}}
-
-                    {{{this}}}
-
-                {{/each}}
+                <input placeholder="Drink Extra (example: whip cream)" type="text" id="drinkExtra" value=""> {{#each drinkExtrasInput}} {{{this}}} {{/each}}
 
                 <button class="btn right-align" id="addMoreExtras" name="button">Add More Extras</button>
                 <button class="btn right-align" id="removeAExtra" name="button">Remove A Extra</button>
             </div>
 
             <label>Special note to customer about drink (optional)</label>
-            <textarea  placeholder='Example: "This product contains peanuts."' id="note" ></textarea>
-            <br /><br />
+            <textarea placeholder='Example: "This product contains peanuts."' id="note"></textarea>
+            <br />
+            <br />
             <button class="btn col s12" id="addDrink">Add Drink</button>
         </div>
     </div>
