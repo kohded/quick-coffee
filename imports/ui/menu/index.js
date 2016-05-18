@@ -1,27 +1,35 @@
-import { Template } from 'meteor/templating';
+import {
+    Template
+} from 'meteor/templating';
 
 import './index.html';
 
-import { Businesses } from '../../api/businesses/businesses.js';
+import {
+    Businesses
+} from '../../api/businesses/businesses.js';
 
 //Template - menuIndexMenu
 Template.menuIndexMenu.onCreated(function() {
-    Session.setDefault('menu', '');
+    
 });
 
 Template.menuIndexMenu.helpers({
     getMenu: function() {
-        var menu = Session.get('menu');
-        var thisBusinessId = Session.get('thisBusinessId');
-
-        return menu[thisBusinessId];
+        var getBuissnessId = Session.get('thisBusinessId');
+        var businessDrinkMenu = Businesses.findOne({
+            _id: getBuissnessId
+        }).businessDrinkMenu;
+        return businessDrinkMenu;
     },
     drinkSizeCount: function(arr) {
         return arr.length;
     },
-    businessInfo: function() {
-        var businessInfo = Session.get('businessInfo');
-        return businessInfo;
+    businessName: function() {
+        var getBuissnessId = Session.get('thisBusinessId');
+        var businessName = Businesses.findOne({
+            _id: getBuissnessId
+        }).businessName;
+        return businessName;
     }
 });
 
@@ -38,6 +46,8 @@ Template.menuForm.onCreated(function() {
 
     // Session used to store all the unique drink extra forms
     Session.setDefault('drinkExtrasForm', []);
+
+
 });
 
 Template.menuForm.events({
@@ -62,8 +72,6 @@ Template.menuForm.events({
         var forms = Session.get('drinkSizeForm');
         forms.splice(forms.length - 1, 1);
         Session.set('drinkSizeForm', forms);
-
-        alert(Meteor.userId());
 
     },
 
@@ -104,7 +112,7 @@ Template.menuForm.events({
 
         var firstDrinkSize = $('#drinkSize').val();
 
-        if(firstDrinkSize){
+        if (firstDrinkSize) {
             drinkSizes.push(firstDrinkSize);
         }
 
@@ -119,7 +127,7 @@ Template.menuForm.events({
 
         var firstDrinkExtra = $('#drinkExtra').val();
 
-        if(firstDrinkExtra){
+        if (firstDrinkExtra) {
             drinkExtras.push(firstDrinkExtra);
         }
 
@@ -140,20 +148,25 @@ Template.menuForm.events({
             note: note
         }
 
-        if(drinkName && firstDrinkSize && drinkPrice) {
+        if (drinkName && firstDrinkSize && drinkPrice) {
 
-            var tempDrinkMenuArr = Businesses.findOne({_id : Meteor.userId()}).businessDrinkMenu;
+            var tempDrinkMenuArr = Businesses.findOne({
+                _id: Meteor.userId()
+            }).businessDrinkMenu;
 
             tempDrinkMenuArr.push(drink);
 
-            Businesses.update({_id : Meteor.userId()}, {$set: {businessDrinkMenu : tempDrinkMenuArr}});
+            Businesses.update({
+                _id: Meteor.userId()
+            }, {
+                $set: {
+                    businessDrinkMenu: tempDrinkMenuArr
+                }
+            });
 
         } else {
             // validation of some sort
         }
-
-
-        console.log(Businesses.findOne({_id : Meteor.userId()}));
     }
 });
 
