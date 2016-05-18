@@ -44,22 +44,6 @@ Template.locationsIndexMap.onRendered(function() {
   });
 });
 
-<<<<<<< HEAD
-=======
-//Template - Locations List
-Template.locationsIndexLocation.onCreated(function() {
-  Session.setDefault('businesses', businesses);
-});
-
-Template.locationsIndexLocation.events({
-  'click #viewMenu': function(event) {
-
-    Session.set('thisBusinessId', this._id);
-    Session.set('businessInfo', this);
-  }
-});
-
->>>>>>> refs/remotes/origin/PetersWorkingCopy
 Template.locationsIndexLocation.helpers({
   getBusinesses: function() {
     return Businesses.find();
