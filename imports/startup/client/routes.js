@@ -49,7 +49,7 @@ AccountsTemplates.configureRoute('forgotPwd');
 AccountsTemplates.configureRoute('resetPwd');
 AccountsTemplates.configureRoute('verifyEmail');
 AccountsTemplates.configureRoute('signUp', {
-  redirect: '/dashboard'
+  redirect: '/:username/dashboard'
 });
 AccountsTemplates.configureRoute('signIn', {
   redirect: '/locations'
