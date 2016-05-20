@@ -26,6 +26,7 @@ Template.registerIndexBusiness.events({
     //Clear form values
     event.target.reset();
 
-    Router.go('dashboardIndex', Meteor.user().username);
+    //Redirect to dashboard. Pass in the username parameter to the route.
+    Router.go('dashboardIndex', {username: Meteor.user().username});
   }
 });
