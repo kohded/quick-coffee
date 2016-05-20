@@ -1,39 +1,31 @@
 import { Template } from 'meteor/templating';
 
-import { Businesses } from '../../api/businesses/businesses.js';
-
 import './index.html';
 
 Template.registerIndexBusiness.events({
   'submit #register-business': function(event) {
     event.preventDefault();
 
-    var userId               = Meteor.userId();
-    var businessName         = $('#business-name').val();
-    var businessAddress      = $('#business-address').val();
-    var businessAddress2     = $('#business-address2').val();
-    var businessAddressCity  = $('#business-address-city').val();
-    var businessAddressState = $('#business-address-state').val();
-    var businessAddressZip   = $('#business-address-zip').val();
-    var businessPhone        = $('#business-phone').val();
-    var businessDrinkMenu = [];
-
-    Businesses.insert({
-      _id                 : userId,
-      businessName        : businessName,
-      businessAddress     : businessAddress,
-      businessAddress2    : businessAddress2,
-      businessAddressCity : businessAddressCity,
-      businessAddressState: businessAddressState,
-      businessAddressZip  : businessAddressZip,
-      businessPhone       : businessPhone,
-      businessDrinkMenu :  businessDrinkMenu,
-      dateRegistered      : new Date()
-    });
+    var userId   = Meteor.userId();
+    var business = {
+      userId              : userId,
+      businessName        : $('#business-name').val(),
+      businessAddress     : $('#business-address').val(),
+      businessAddress2    : $('#business-address2').val(),
+      businessAddressCity : $('#business-address-city').val(),
+      businessAddressState: $('#business-address-state').val(),
+      businessAddressZip  : $('#business-address-zip').val(),
+      businessPhone       : $('#business-phone').val(),
+      dateRegistered      : new Date(),
+      businessDrinkMenu   : []
+    };
 
     //Assign business role when registering business.
-    Meteor.call('assignBusinessRole', userId);
+    Meteor.call('registerBusiness', business);
 
-    Router.go('dashboardIndex');
+    //Clear form values
+    event.target.reset();
+
+    Router.go('dashboardIndex', Meteor.user().username);
   }
 });

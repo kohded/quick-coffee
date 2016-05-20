@@ -4,6 +4,10 @@ import { Businesses } from '../../api/businesses/businesses.js';
 
 import './index.html';
 
+Template.locationsIndex.onCreated(function() {
+  Meteor.subscribe('businesses');
+});
+
 //Template Search Input
 Template.locationsIndexSearchInput.onRendered(function() {
   this.autorun(function() {
