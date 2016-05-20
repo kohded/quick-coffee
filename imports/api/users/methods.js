@@ -2,13 +2,13 @@ import { Meteor } from 'meteor/meteor';
 
 Meteor.methods({
   'updateUsername'(userId, username) {
-    Meteor.users.update({_id: userId}, {$set: {username: username}});
+    Meteor.users.update({'_id': userId}, {$set: {'username': username}});
   },
   'updateEmail'(userId, email) {
-    Meteor.users.update({_id: userId}, {$set: {email: email}});
+    Meteor.users.update({'_id': userId}, {$set: {'emails.0.address': email}});
   },
   'updatePassword'(userId, password) {
-    Accounts.setPassword(userId, password, {logout: false});
+    Accounts.setPassword(userId, password, {'logout': false});
   }
 });
 
