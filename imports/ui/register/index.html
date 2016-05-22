@@ -10,62 +10,33 @@
   <div class="row">
     <div class="col s12 col m8 offset-m2">
       <h3>Register Business</h3>
-      <form role="form" id="register-business">
+      {{#autoForm schema=businessSchema id="registerBusiness" type="method"
+      meteormethod="registerBusiness"}}
+        {{> afQuickField name="userId" value=currentUser._id}}
+        {{> afQuickField name="dateRegistered" value=getDate}}
         <div class="row">
           <div class="input-field col s12">
-            <label for="business-name">Business Name</label>
-            <input class="validate" type="text" id="business-name"
-                   name="businessName">
+            {{> afQuickField name="businessName"}}
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <label for="business-address">Address</label>
-            <input class="validate" type="text" id="business-address"
-                   name="businessAddress">
+            {{#if googleMapsReady}}
+              {{> afQuickField name="location" type="googleplace" class="form-control" autocomplete="off"}}
+            {{/if}}
           </div>
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <label for="business-address2">Address Line 2</label>
-            <input class="validate" type="text" id="business-address2"
-                   name="businessAddress2">
+            {{> afQuickField name="businessPhone"}}
           </div>
         </div>
         <div class="row">
-          <div class="input-field col s12">
-            <label for="business-address-city">City</label>
-            <input class="validate" type="text" id="business-address-city"
-                   name="businessAddressCity">
-          </div>
+          <button type="submit" class="col s12 waves-effect waves-light btn light-green
+                  lighten-1">Submit
+          </button>
         </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <label for="business-address-state">State</label>
-            <input class="validate" type="text" id="business-address-state"
-                   name="businessAddressState">
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <label for="business-address-zip">Zip Code</label>
-            <input class="validate" type="text" id="business-address-zip"
-                   name="businessAddressState">
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <label for="business-phone">Phone</label>
-            <input class="validate" type="text" id="business-phone"
-                   name="businessPhone">
-          </div>
-        </div>
-        <div class="row">
-          <input type="submit"
-                 class="col s12 waves-effect waves-light btn light-green
-                  lighten-1">
-        </div>
-      </form>
+      {{/autoForm}}
     </div>
   </div>
 </template>

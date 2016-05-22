@@ -24,7 +24,18 @@ Router.route('/register', {
 });
 
 Router.route('/register-business', {
-  name: 'registerIndexBusiness'
+  name: 'registerIndexBusiness',
+  onBeforeAction: function() {
+    if (!GoogleMaps.loaded()) {
+      GoogleMaps.load({
+        key: "",
+        libraries: "geometry,places"
+      });
+    }
+
+    //Continues the route as normal
+    this.next();
+  }
 });
 
 Router.route('/signin', {

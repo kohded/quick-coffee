@@ -16,14 +16,19 @@ standard-minifier-js    # JS minifier run for production mode
 es5-shim                # ECMAScript 5 compatibility for older browsers.
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
-session
-iron:router
-dburles:google-maps
 materialize:materialize
-jeremy:geocomplete
-mdg:geolocation
+session
+check
+iron:router
 accounts-password
 useraccounts:materialize
 useraccounts:iron-routing
 alanning:roles
+aldeed:collection2
+aldeed:autoform
+dburles:google-maps
+lukemadera:autoform-googleplace
+ejson
+mdg:geolocation
+jeremy:geocomplete
 msavin:mongol
