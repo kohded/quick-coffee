@@ -4,6 +4,7 @@ export const Businesses = new Mongo.Collection('businesses');
 
 export const Schemas = {};
 
+//Business address schema.
 Schemas.Address = new SimpleSchema({
   fullAddress: {
     type: String
@@ -44,6 +45,7 @@ Schemas.Address = new SimpleSchema({
   }
 });
 
+//Business registration schema.
 Schemas.Business = new SimpleSchema({
   userId        : {
     type    : String,
@@ -76,6 +78,25 @@ Schemas.Business = new SimpleSchema({
     autoform: {
       omit: true,
       type: 'hidden'
+    }
+  }
+});
+
+//Search location schema, based on address and radius.
+Schemas.Search = new SimpleSchema({
+  location: {
+    type    : Schemas.Address,
+    autoform: {
+      label      : false,
+      placeholder: 'Business Name or Address'
+    }
+  },
+  radius  : {
+    type    : Number,
+    autoform: {
+      label       : 'Radius (miles)',
+      preserveForm: true,
+      value       : 30
     }
   }
 });

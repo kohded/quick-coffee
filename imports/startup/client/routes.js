@@ -25,15 +25,16 @@ Router.route('/register', {
 
 Router.route('/register-business', {
   name: 'registerIndexBusiness',
+  //Load Google Maps before the form loads.
   onBeforeAction: function() {
     if (!GoogleMaps.loaded()) {
       GoogleMaps.load({
-        key: "",
-        libraries: "geometry,places"
+        key: '',
+        libraries: 'geometry,places'
       });
     }
 
-    //Continues the route as normal
+    //Continues the route as normal.
     this.next();
   }
 });

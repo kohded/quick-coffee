@@ -7,7 +7,7 @@
   <div class="divider"></div>
 
   <!--Locations List-->
-  {{> locationsIndexLocation}}
+  {{> locationsIndexList}}
   <div class="divider"></div>
 
   <!--Pagination-->
@@ -15,33 +15,39 @@
 </template>
 
 <template name="locationsIndexSearchInput">
-  <div class="row">
-    <form class="col s12 col m8 offset-m2" id="search-locations">
-      <div class="input-field">
-        <label for="location">City, State, or Zip</label>
-        <input id="location" type="text" class="validate" placeholder="">
+  {{#autoForm schema=searchSchema id="searchBusiness" type="normal"}}
+    <div class="row">
+      <div class="input-field col s12 m10">
+        {{#if googleMapsReady}}
+          {{> afQuickField name="location" type="googleplace" class="form-control" autocomplete="off"}}
+        {{/if}}
       </div>
-    </form>
-  </div>
+      <div class="input-field col s12 m2">
+        {{> afQuickField name="radius" placeholder=" "}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <button type="submit" class="col s12 waves-effect waves-light btn light-green
+                  lighten-1">Search
+        </button>
+      </div>
+    </div>
+  {{/autoForm}}
 </template>
 
 <template name="locationsIndexMap">
   <div class="row">
     <div class="col s12">
       <div class="card-panel">
-        <div class="map-container">
-          {{#unless geolocationError}}
-            {{> googleMap name="map" options=mapOptions}}
-          {{else}}
-            Failed to find your location: {{geolocationError}}
-          {{/unless}}
+        <div id="map-container">
         </div>
       </div>
     </div>
   </div>
 </template>
 
-<template name="locationsIndexLocation">
+<template name="locationsIndexList">
   <div class="row">
     <div class="col s12">
       <h4 class="text-center">Locations</h4>
@@ -49,18 +55,14 @@
     {{#each getBusinesses}}
       <div class="col s12 m6 l4">
         <h5>{{businessName}}</h5>
-        <img class="responsive-img rounded-corners"
-             src="img/logos/{{businessLogo}}">
+        <!--Commented until business can upload logo-->
+        <!--<img class="responsive-img rounded-corners" -->
+        <!--src="img/logos/{{businessLogo}}">-->
         <div class="col s12">
           <address>
-            {{businessAddress}}
-            {{#if businessAddress2}}
-              {{businessAddress2}}<br>
-            {{else}}
-              <br>
-            {{/if}}
-            {{businessAddressCity}}, {{businessAddressState}}
-            {{businessAddressZip}}<br>
+            {{location.street}}<br>
+            {{location.city}}, {{location.state}}
+            {{location.zip}}<br>
             <abbr title="Phone">P:</abbr> {{businessPhone}}
           </address>
         </div>

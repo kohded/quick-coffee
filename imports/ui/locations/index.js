@@ -1,55 +1,150 @@
 import { Template } from 'meteor/templating';
 
 import { Businesses } from '../../api/businesses/businesses.js';
+import { Schemas } from '../../api/businesses/businesses.js';
 
 import './index.html';
 
-Template.locationsIndex.onCreated(function() {
-  Meteor.subscribe('businesses');
-});
+var Locations = new ReactiveVar(null);
+var Map       = null;
+var Markers   = [];
 
-//Template Search Input
-Template.locationsIndexSearchInput.onRendered(function() {
+Template.locationsIndex.onRendered(function() {
   this.autorun(function() {
-    //Get users current locations.
-    var latLng = Geolocation.latLng();
-
-    //Set map options.
-    if(GoogleMaps.loaded() && latLng) {
-      $('#location').geocomplete({
-        location     : new google.maps.LatLng(latLng.lat, latLng.lng),
-        map          : $('.map-container'),
-        mapOptions   : {
-          zoom       : 14,
-          scrollwheel: false
-        },
-        markerOptions: {
-          draggable: true
-        }
+    //Load Google Maps.
+    if(!GoogleMaps.loaded()) {
+      GoogleMaps.load({
+        key      : '',
+        libraries: 'geometry,places'
       });
+    }
+
+    //Google Maps initial settings and options.
+    if(GoogleMaps.loaded()) {
+      var lat    = 47.6062;
+      var lng    = -122.3321;
+      var latlng = new google.maps.LatLng(lat, lng);
+
+      var options = {
+        zoom                  : 12,
+        streetViewControl     : true,
+        scaleControl          : true,
+        draggable             : true,
+        disableDefaultUI      : true,
+        disableDoubleClickZoom: true,
+        mapTypeId             : google.maps.MapTypeId.ROADMAP,
+        center                : latlng
+      };
+
+      //Load map into map-container.
+      Map = new google.maps.Map(document.getElementById('map-container'),
+        options);
     }
   });
 });
 
-Template.locationsIndexMap.helpers({
-  //Show an error if users current geolocation doesn't exist.
-  geolocationError: function() {
-    var error = Geolocation.error();
+//////////////////// Search Input ////////////////////
+Template.locationsIndexSearchInput.onRendered(function() {
+  //Fixes overlapping of placeholder and value on refresh.
+  Materialize.updateTextFields();
 
-    return error && error.message;
-  }
-});
+  this.autorun(function() {
+    var locations = Locations.get();
 
-//Template Map
-Template.locationsIndexMap.onRendered(function() {
-  GoogleMaps.load({
-    key      : '',
-    libraries: 'places'
+    //If there are locations search for businesses.
+    if(locations) {
+      Meteor.subscribe('searchBusinesses', locations);
+    }
   });
 });
 
-Template.locationsIndexLocation.helpers({
-  getBusinesses: function() {
-    return Businesses.find();
+Template.locationsIndexSearchInput.helpers({
+  googleMapsReady: function() {
+    return GoogleMaps.loaded();
+  },
+  searchSchema   : function() {
+    return Schemas.Search;
+  },
+  businessSchema : function() {
+    return Schemas.Business;
   }
 });
+
+AutoForm.addHooks('searchBusiness', {
+  onSubmit : function(insertDoc, updateDoc, currentDoc) {
+    check(insertDoc, Schemas.Search);
+    Locations.set(insertDoc);
+    this.done();
+
+    return false;
+  },
+  onSuccess: function(formType, result) {
+  },
+  onError  : function(formType, error) {
+    console.log('error', formType, error);
+  }
+});
+//////////////////// Search Input ////////////////////
+
+//////////////////// Map ////////////////////
+var addMarkersToMap = function(businesses) {
+  if(!Map) {
+    console.log('Map not initialized!');
+
+    return;
+  }
+
+  // Remove existing markers
+  Markers.forEach(function(marker) {
+    marker.setMap(null);
+  });
+  Markers = [];
+
+  var center = true;
+
+  //Iterate through businesses and add markers.
+  businesses.forEach(function(business) {
+    var lat = business.location.lat;
+    var lng = business.location.lng;
+
+    if(center) {
+      Map.setCenter(new google.maps.LatLng(lat, lng));
+      center = false;
+    }
+
+    var marker = new google.maps.Marker({
+      position: {
+        lat: lat,
+        lng: lng
+      },
+      map     : Map
+    });
+
+    //Click marker.
+    marker.addListener('click', function() {
+      console.log('clicked on ', business);
+    });
+
+    Markers.push(marker);
+  });
+};
+
+Template.locationsIndexMap.onRendered(function() {
+  this.autorun(function() {
+    var businesses = Businesses.find({});
+
+    //If there are businesses add markers to the map.
+    if(businesses.count() > 0) {
+      addMarkersToMap(businesses.fetch());
+    }
+  });
+});
+//////////////////// Map ////////////////////
+
+//////////////////// Locations List ////////////////////
+Template.locationsIndexList.helpers({
+  getBusinesses: function() {
+    return Businesses.find({});
+  }
+});
+//////////////////// Locations List ////////////////////
