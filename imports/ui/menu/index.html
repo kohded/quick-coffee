@@ -1,93 +1,111 @@
 <template name="menuIndex">
-    <div class="row">
-        <div class="col s12">
-            {{> menuIndexMenu}}
-        </div>
+  <div class="row">
+    <div class="col s12">
+      <h2 class="center-align">{{businessName}}'s Menu</h2>
+      {{> menuIndexMenu}}
     </div>
+  </div>
 </template>
 
 <template name="menuIndexMenu">
-    {{> menuForm}}
-    <h2 class="center-align">{{businessName}}'s Menu</h2>
+  <div class="center-align">
+    <ul class="col s10 offset-s1">
+      {{#each getMenu}}
+        <li class="card-panel valign-wrapper clearfix">
 
-    <div class="center-align">
-        <ul class="col s10 offset-s1">
-            {{#each getMenu}}
-            <li class="card-panel valign-wrapper clearfix">
+          <img class="col s4 responsive-img valign rounded-corners"
+               src="/business-img/cappuccino.jpg" width="100%"/>
 
-                <img class="col s4 responsive-img valign rounded-corners" src="/business-img/cappuccino.jpg" width="100%"/>
+          <div class="col s8 ">
+            <h3 class="title">{{name}}</h3>
+            <p class="left-align col s10 offset-s1">{{description}}</p>
+            <h5 class="col s12"><b><i>${{price}}</i></b></h5>
+            <button class="right btn waves-effect waves-light btn light-green
+                  lighten-1">Order</button>
+          </div>
 
-                <div class="col s8 ">
-                    <h3 class="title">{{name}}</h3>
-                    <p class="left-align col s10 offset-s1">{{description}}</p>
-                    <h5 class="col s12"><b><i>${{price}}</i></b></h5>
-                    <button class="right btn">Order</button>
-                </div>
-
-
-            </li>
-            {{/each}}
-        </ul>
-    </div>
-
+        </li>
+      {{/each}}
+    </ul>
+  </div>
 
 </template>
 
 <template name="menuForm">
-    <div class=" col s8 offset-s2">
+  <div class="row">
+    <div class="col s12">
+      <p>
+        This form is used to build your menu one drink at a time.
+      </p>
 
-        <h3>Menu Builder</h3>
-        <p>
-            This form is used to build your menu one drink at a time.
-        </p>
+      <div class="card-panel clearfix">
+        <div class="card-panel">
+          <h5><b><i>Drink Information</i></b></h5>
 
-        <div class="card-panel clearfix">
-            <div class="card-panel">
-                <h5><b><i>Drink Information</i></b></h5>
+          <input placeholder="Drink Name" id="drinkName" type="text"/>
 
-                <input placeholder="Drink Name" id="drinkName" type="text" />
+          <label>Drink Description (Optional):</label>
+          <textarea id="drinkDesc"></textarea>
 
-                <label>Drink Description (Optional):</label>
-                <textarea id="drinkDesc"></textarea>
+          <input placeholder="Drink Price (example 2.99)" id="drinkPrice"
+                 type="text"/>
 
-                <input placeholder="Drink Price (example 2.99)" id="drinkPrice" type="text" />
-
-                <div class="file-field input-field">
-                    <div class="btn">
-                        <span>Image Upload</span>
-                        <input type="file" multiple>
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text" placeholder="Upload image of drink">
-                    </div>
-                </div>
+          <div class="file-field input-field">
+            <div class="btn waves-effect waves-light btn light-green
+                  lighten-1">
+              <span>Image Upload</span>
+              <input type="file" multiple>
             </div>
-
-            <div class="card-panel">
-                <h5><b><i>Available Drink Sizes</i></b></h5>
-
-                <input placeholder="Drink size (example: 12oz)" type="text" id="drinkSize" value=""> {{#each drinkSizeInput}} {{{this}}} {{/each}}
-
-
-                <button class="btn right-align" id="addMoreSizes" name="button">Add More Sizes</button>
-                <button class="btn right-align" id="removeASize" name="button">Remove A Size</button>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text"
+                     placeholder="Upload image of drink">
             </div>
-
-            <div class="card-panel">
-                <h5><b><i>Available Drink Extras</i></b></h5>
-
-
-                <input placeholder="Drink Extra (example: whip cream)" type="text" id="drinkExtra" value=""> {{#each drinkExtrasInput}} {{{this}}} {{/each}}
-
-                <button class="btn right-align" id="addMoreExtras" name="button">Add More Extras</button>
-                <button class="btn right-align" id="removeAExtra" name="button">Remove A Extra</button>
-            </div>
-
-            <label>Special note to customer about drink (optional)</label>
-            <textarea placeholder='Example: "This product contains peanuts."' id="note"></textarea>
-            <br />
-            <br />
-            <button class="btn col s12" id="addDrink">Add Drink</button>
+          </div>
         </div>
+
+        <div class="card-panel">
+          <h5><b><i>Available Drink Sizes</i></b></h5>
+
+          <input placeholder="Drink size (example: 12oz)" type="text"
+                 id="drinkSize"
+                 value=""> {{#each drinkSizeInput}} {{{this}}} {{/each}}
+
+
+          <button class="btn right-align waves-effect waves-light btn light-green
+                  lighten-1" id="addMoreSizes" name="button">
+            Add More Sizes
+          </button>
+          <button class="btn right-align waves-effect waves-light btn light-green
+                  lighten-1" id="removeASize" name="button">
+            Remove A Size
+          </button>
+        </div>
+
+        <div class="card-panel">
+          <h5><b><i>Available Drink Extras</i></b></h5>
+
+          <input placeholder="Drink Extra (example: whip cream)" type="text"
+                 id="drinkExtra"
+                 value=""> {{#each drinkExtrasInput}} {{{this}}} {{/each}}
+
+          <button class="btn right-align waves-effect waves-light btn light-green
+                  lighten-1" id="addMoreExtras" name="button">
+            Add More Extras
+          </button>
+          <button class="btn right-align waves-effect waves-light btn light-green
+                  lighten-1" id="removeAExtra" name="button">
+            Remove A Extra
+          </button>
+        </div>
+
+        <label>Special note to customer about drink (optional)</label>
+        <textarea placeholder='Example: "This product contains peanuts."'
+                  id="note"></textarea>
+        <br/>
+        <br/>
+        <button class="btn col s12 waves-effect waves-light btn light-green
+                  lighten-1" id="addDrink">Add Drink</button>
+      </div>
     </div>
+  </div>
 </template>
