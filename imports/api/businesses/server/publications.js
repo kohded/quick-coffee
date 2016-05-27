@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-
+import { Menu } from '../menu.js';
 import { Businesses } from '../businesses.js';
 
 //Publish search results for locations within a given radius.
@@ -27,4 +27,12 @@ Meteor.publish('searchBusinesses', function(businesses) {
   };
 
   return Businesses.find(selector);
+});
+
+Meteor.publish('getBusiness', function(userId){
+  return Businesses.find({userId: userId});
+});
+
+Meteor.publish('menu', function(currentId){
+  return Menu.find({id:currentId});
 });

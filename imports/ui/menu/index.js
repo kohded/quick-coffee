@@ -5,35 +5,62 @@ import {
 import './index.html';
 
 import {
+    Menu
+} from '../../api/businesses/menu.js';
+
+import {
     Businesses
 } from '../../api/businesses/businesses.js';
 
-//Template - menuIndexMenu
-Template.menuIndexMenu.onCreated(function() {
-    
+//Template - menuIndex
+Template.menuIndex.helpers({
+    getBusinessName: function() {
+        return Router.current().params.businessName;
+    }
+});
+
+
+Template.menuDashboard.helpers({
+    getMenuInfo: function() {
+
+        var businessId;
+
+        var business = Businesses.find({
+            userId: Meteor.userId()
+        });
+
+        business.forEach(function(doc) {
+            businessId = doc._id;
+        });
+
+        Meteor.subscribe('menu', businessId);
+
+        return Menu.find({
+            id: businessId
+        });
+    }
 });
 
 Template.menuIndexMenu.helpers({
     getMenu: function() {
-        var getBuissnessId = Session.get('thisBusinessId');
-        var businessDrinkMenu = Businesses.findOne({
-            _id: getBuissnessId
-        }).businessDrinkMenu;
-        return businessDrinkMenu;
+
+        var business = Session.get('business');
+
+        Meteor.subscribe('menu', business._id);
+
+        return Menu.find({
+            id: business._id
+        });
     },
     drinkSizeCount: function(arr) {
         return arr.length;
-    },
-    businessName: function() {
-        var getBuissnessId = Session.get('thisBusinessId');
-        var businessName = Businesses.findOne({
-            _id: getBuissnessId
-        }).businessName;
-        return businessName;
     }
 });
 
+
 Template.menuForm.onCreated(function() {
+    Meteor.subscribe('getBusiness', Meteor.userId());
+
     var counter = 0;
     // Drink Size counter used to create unique IDs for forms
     Session.setDefault('counterDS', counter);
@@ -124,7 +151,6 @@ Template.menuForm.events({
             }
         }
 
-
         var firstDrinkExtra = $('#drinkExtra').val();
 
         if (firstDrinkExtra) {
@@ -150,19 +176,22 @@ Template.menuForm.events({
 
         if (drinkName && firstDrinkSize && drinkPrice) {
 
-            var tempDrinkMenuArr = Businesses.findOne({
-                _id: Meteor.userId()
-            }).businessDrinkMenu;
+            var businessId;
 
-            tempDrinkMenuArr.push(drink);
-
-            Businesses.update({
-                _id: Meteor.userId()
-            }, {
-                $set: {
-                    businessDrinkMenu: tempDrinkMenuArr
-                }
+            var business = Businesses.find({
+                userId: Meteor.userId()
             });
+
+            business.forEach(function(doc) {
+                businessId = doc._id;
+            });
+
+            var drinkObj = {
+                id: businessId,
+                singleDrink: drink
+            }
+
+            Meteor.call('insertDrink', drinkObj);
 
         } else {
             // validation of some sort
