@@ -23,13 +23,14 @@
         {{/if}}
       </div>
       <div class="input-field col s12 m2">
-        {{> afQuickField name="radius" placeholder=" "}}
+        {{> afQuickField name="radius"}}
       </div>
     </div>
     <div class="row">
       <div class="col s12">
-        <button type="submit" class="col s12 waves-effect waves-light btn light-green
-                  lighten-1">Search
+        <button type="submit"
+                class="col s12 btn waves-effect waves-light">
+          Search
         </button>
       </div>
     </div>
@@ -55,9 +56,8 @@
     {{#each getBusinesses}}
       <div class="col s12 m6 l4">
         <h5>{{businessName}}</h5>
-        <!--Commented until business can upload logo-->
-        <!--<img class="responsive-img rounded-corners" -->
-        <!--src="img/logos/{{businessLogo}}">-->
+        <img class="responsive-img rounded-corners"
+             src="/img/business/logo/logo.jpg">
         <div class="col s12">
           <address>
             {{location.street}}<br>
@@ -69,7 +69,7 @@
         <div class="col s12">
           <hr>
           <a href="{{pathFor 'menuIndex'}}" id="viewMenu"
-             class="btn waves-effect waves-green light-green lighten-1">Menu
+             class="btn waves-effect waves-light">Menu
           </a>
         </div>
       </div>
@@ -84,8 +84,7 @@
         <li class="disabled">
           <a href="#!"><i class="material-icons">chevron_left</i></a>
         </li>
-        <li class="waves-effect waves-green light-green lighten-1">
-          <a href="#!">1</a></li>
+        <li class="active teal lighten-1"><a href="#!">1</a></li>
         <li class="waves-effect"><a href="#!">2</a></li>
         <li class="waves-effect"><a href="#!">3</a></li>
         <li class="waves-effect"><a href="#!">4</a></li>

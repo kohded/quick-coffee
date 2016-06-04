@@ -3,3 +3,9 @@
   {{> layoutsPartialsMain}}
   {{> yield region='layoutsPartialsFooter'}}
 </template>
+
+<template name="layoutWide">
+  {{> yield region='layoutsPartialsNav'}}
+  {{> layoutsPartialsMainWide}}
+  {{> yield region='layoutsPartialsFooter'}}
+</template>

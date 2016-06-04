@@ -3,7 +3,18 @@
     {{> yield}}
   </div>
 
-  <!--CDN Links-->
+  {{> layoutsPartialsMainLinks}}
+</template>
+
+<template name="layoutsPartialsMainWide">
+  <div class="main">
+    {{> yield}}
+  </div>
+
+  {{> layoutsPartialsMainLinks}}
+</template>
+
+<template name="layoutsPartialsMainLinks">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
 </template>

@@ -3,6 +3,20 @@
   margin-bottom : 40px;
 }
 
+/*UI - HOME*/
+.parallax-container {
+  height : 550px;
+}
+
+.center-image {
+  display : block;
+  margin  : 0 auto;
+}
+
+.mt40 {
+  margin-top : 40px;
+}
+
 /*UI - FOOTER*/
 /*Sticky footer*/
 body {
@@ -28,7 +42,6 @@ body {
 /*Sticky footer*/
 
 /*UI - MENU*/
-
 .clearfix {
   overflow : auto;
 }
@@ -49,48 +62,32 @@ body {
 }
 
 .tabs .tab a {
-  color : #9CCC65;
+  color : #26A69A;
 }
 
 .tabs .tab a:hover {
-  color : #C5E1A5; /*light-green lighten-3*/
+  color : #B2DFDB; /*teal lighten-4*/
 }
 
 .tabs .indicator {
-  background-color : #9CCC65;
+  background-color : #26A69A;
 }
 
 /*GLOBAL*/
 a {
-  color: #9CCC65;
+  color : #26A69A; /*teal lighten-1*/
 }
 
 .primary-color {
-  background-color : #64B5F6; /*blublue lighten-2*/
+  background-color : #80CBC4; /*teal lighten-3*/
 }
 
 .secondary-color {
-  background-color : #9CCC65; /*light-green lighten-1*/
+  background-color : #26A69A; /*teal lighten-1*/
 }
 
 .accent-color {
   background-color : #757575; /*grey darken-1*/
-}
-
-.input-field input[type=text]:focus {
-  border-bottom : 1px solid #9CCC65;
-}
-
-.input-field input[type=email]:focus {
-  border-bottom : 1px solid #9CCC65;
-}
-
-.input-field input[type=password]:focus {
-  border-bottom : 1px solid #9CCC65;
-}
-
-.input-field input[type=number]:focus {
-  border-bottom : 1px solid #9CCC65;
 }
 
 .rounded-corners {

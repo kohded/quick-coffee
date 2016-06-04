@@ -16,7 +16,8 @@ Router.configure({
 });
 
 Router.route('/', {
-  name: 'homeIndex'
+  name: 'homeIndex',
+  layoutTemplate: 'layoutWide'
 });
 
 Router.route('/register', {
