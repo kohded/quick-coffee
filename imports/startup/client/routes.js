@@ -16,21 +16,17 @@ Router.configure({
 });
 
 Router.route('/', {
-  name: 'homeIndex',
+  name          : 'homeIndex',
   layoutTemplate: 'layoutWide'
 });
 
-Router.route('/register', {
-  name: 'registerIndex'
-});
-
 Router.route('/register-business', {
-  name: 'registerIndexBusiness',
+  name          : 'registerIndexBusiness',
   //Load Google Maps before the form loads.
   onBeforeAction: function() {
-    if (!GoogleMaps.loaded()) {
+    if(!GoogleMaps.loaded()) {
       GoogleMaps.load({
-        key: '',
+        key      : '',
         libraries: 'geometry,places'
       });
     }
@@ -38,10 +34,6 @@ Router.route('/register-business', {
     //Continues the route as normal.
     this.next();
   }
-});
-
-Router.route('/signin', {
-  name: 'signinIndex'
 });
 
 Router.route('/locations', {
@@ -58,12 +50,26 @@ Router.route('/:businessName/menu', {
 
 AccountsTemplates.configureRoute('changePwd');
 AccountsTemplates.configureRoute('enrollAccount');
-AccountsTemplates.configureRoute('forgotPwd');
-AccountsTemplates.configureRoute('resetPwd');
-AccountsTemplates.configureRoute('verifyEmail');
-AccountsTemplates.configureRoute('signUp', {
-  redirect: '/:username/dashboard'
+AccountsTemplates.configureRoute('forgotPwd', {
+  name    : 'signinIndexForgotPassword',
+  template: 'signinIndexForgotPassword',
+  redirect: '/signin'
 });
+AccountsTemplates.configureRoute('resetPwd', {
+  name    : 'signinIndexResetPassword',
+  template: 'signinIndexResetPassword',
+  redirect: '/signin'
+});
+AccountsTemplates.configureRoute('verifyEmail');
 AccountsTemplates.configureRoute('signIn', {
+  name    : 'signinIndex',
+  path    : '/signin',
+  template: 'signinIndex',
   redirect: '/locations'
+});
+AccountsTemplates.configureRoute('signUp', {
+  name    : 'registerIndex',
+  path    : '/register',
+  template: 'registerIndex',
+  redirect: '/:username/dashboard'
 });

@@ -19,6 +19,7 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 materialize:materialize
 session
 check
+email
 reactive-var
 iron:router
 accounts-password

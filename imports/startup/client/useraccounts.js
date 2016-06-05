@@ -28,13 +28,21 @@ AccountsTemplates.configure({
   texts: {
     signInLink_link: 'Sign In',
     title          : {
-      changePwd    : "Change Password",
-      enrollAccount: "Enroll Account",
-      forgotPwd    : "Forgot Password",
-      resetPwd     : "Reset Password",
+      changePwd    : 'Change Password',
+      enrollAccount: 'Enroll Account',
+      forgotPwd    : 'Forgot Password',
+      resetPwd     : 'Reset Password',
       signIn       : 'Sign In',
-      signUp       : "Register",
-      verifyEmail  : "Verify Email"
+      signUp       : 'Register',
+      verifyEmail  : 'Verify Email'
+    },
+    button         : {
+      //changePwd: 'Password Text',
+      //enrollAccount: 'Enroll Text',
+      //forgotPwd: 'Forgot Pwd Text',
+      resetPwd: 'Reset Password'
+      //signIn: 'Sign In Text',
+      //signUp: 'Sign Up Text'
     }
   }
 });
@@ -44,9 +52,9 @@ var pwd = AccountsTemplates.removeField('password');
 AccountsTemplates.removeField('email');
 AccountsTemplates.addFields([
   {
-    _id        : "username",
-    type       : "text",
-    displayName: "username",
+    _id        : 'username',
+    type       : 'text',
+    displayName: 'username',
     required   : true,
     minLength  : 5
   },
@@ -54,7 +62,7 @@ AccountsTemplates.addFields([
     _id        : 'email',
     type       : 'email',
     required   : true,
-    displayName: "email",
+    displayName: 'email',
     re         : /.+@(.+){2,}\.(.+){2,}/,
     errStr     : 'Invalid email'
   },
@@ -62,7 +70,7 @@ AccountsTemplates.addFields([
     _id        : 'username_and_email',
     type       : 'text',
     required   : true,
-    displayName: "Username or Email"
+    displayName: 'Username or Email'
   },
   pwd
 ]);
