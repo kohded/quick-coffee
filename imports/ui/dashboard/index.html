@@ -40,65 +40,65 @@
   <div class="row">
     <div class="col s12">
       <h5>Update Info</h5>
+      <div class="card-panel clearfix">
+        <p><i class="material-icons left">contacts</i>
+          Username: {{currentUser.username}}</p>
+        <form class="col s12" role="form" id="update-username">
+          <div class="row">
+            <div class="input-field col s12 m8">
+              <label for="username">
+                Username
+              </label>
+              <input class="validate" type="text" id="username"
+                     name="username">
+            </div>
+            <div class="input-field col s12 m4">
+              <input type="submit"
+                     class="col s12 btn waves-effect waves-light teal lighten-1"
+                     value="Update Username">
+            </div>
+          </div>
+        </form>
 
-      <p><i class="material-icons left">contacts</i>
-        Username: {{currentUser.username}}</p>
-      <form class="col s12" role="form" id="update-username">
-        <div class="row">
-          <div class="input-field col s12 m8">
-            <label for="username">
-              Username
-            </label>
-            <input class="validate" type="text" id="username"
-                   name="username">
+        <p><i class="material-icons left">email</i>
+          Email: {{currentUser.emails.[0].address}}</p>
+        <form class="col s12" role="form" id="update-email">
+          <div class="row">
+            <div class="input-field col s12 m8">
+              <label for="email">
+                Email
+              </label>
+              <input class="validate" type="text" id="email"
+                     name="email">
+            </div>
+            <div class="input-field col s12 m4">
+              <input type="submit"
+                     class="col s12 btn waves-effect waves-light teal lighten-1"
+                     value="Update Email">
+            </div>
           </div>
-          <div class="input-field col s12 m4">
-            <input type="submit"
-                   class="col s12 btn waves-effect waves-light teal lighten-1"
-                   value="Update Username">
-          </div>
-        </div>
-      </form>
+        </form>
 
-      <p><i class="material-icons left">email</i>
-        Email: {{currentUser.emails.[0].address}}</p>
-      <form class="col s12" role="form" id="update-email">
-        <div class="row">
-          <div class="input-field col s12 m8">
-            <label for="email">
-              Email
-            </label>
-            <input class="validate" type="text" id="email"
-                   name="email">
+        <p><i class="material-icons left">vpn_key</i>Password</p>
+        <form class="col s12" role="form" id="update-password">
+          <div class="row">
+            <div class="input-field col s12 m8">
+              <label for="password">
+                Password
+              </label>
+              <input class="validate" type="password" id="password"
+                     name="password">
+            </div>
+            <div class="input-field col s12 m4">
+              <input type="submit"
+                     class="col s12 btn waves-effect waves-light"
+                     value="Update Password">
+            </div>
           </div>
-          <div class="input-field col s12 m4">
-            <input type="submit"
-                   class="col s12 btn waves-effect waves-light teal lighten-1"
-                   value="Update Email">
-          </div>
-        </div>
-      </form>
-
-      <p><i class="material-icons left">vpn_key</i>Password</p>
-      <form class="col s12" role="form" id="update-password">
-        <div class="row">
-          <div class="input-field col s12 m8">
-            <label for="password">
-              Password
-            </label>
-            <input class="validate" type="password" id="password"
-                   name="password">
-          </div>
-          <div class="input-field col s12 m4">
-            <input type="submit"
-                   class="col s12 btn waves-effect waves-light"
-                   value="Update Password">
-          </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
-
   <div class="row">
     <div class="col s12">
       <div class="divider"></div>
@@ -121,5 +121,161 @@
   </div>
 
   {{> menuForm}}
-  {{> menuDashboard}}
+  <div class="divider"></div>
+
+  <div class="row">
+    <div class="col s12">
+      <h4>Drinks</h4>
+      <div class="divider"></div>
+    </div>
+  </div>
+  <div class="row">
+    {{#each getMenuInfo}}
+      <div class="col s12 m4">
+        <div class="card">
+          <div class="card-image">
+            <img class="responsive-img" src="/business-img/cappuccino.jpg"
+                 width="100%"/>
+            <span class="card-title">{{singleDrink.name}}</span>
+          </div>
+          <div class="card-content">
+            <p>Description: {{singleDrink.description}}</p>
+            <p>Price: ${{singleDrink.price}}</p>
+            <p>Sizes: {{singleDrink.sizes}}</p>
+            <p>Extras: {{singleDrink.extras}}</p>
+            <p>Note: {{singleDrink.note}}</p>
+          </div>
+          <div class="card-action">
+            <a href="#" class="activator" id="updateDrink">Edit</a>
+            <a href="#" id="removeDrink">Delete</a>
+          </div>
+          <div class="card-reveal">
+            <span class="card-title"><i
+              class="close material-icons right">close</i></span>
+            <form class="col s12" role="form" id="update-drink">
+              <div class="row">
+                <div class="input-field col s12">
+                  <label class="active" for="name">Name</label>
+                  <input class="validate" type="text" id="name" name="name"
+                         value="{{singleDrink.name}}">
+                </div>
+                <div class="input-field col s12">
+                  <label class="active" for="description">Description</label>
+                  <textarea class="validate  materialize-textarea" type="text"
+                            id="description"
+                            name="description"
+                            value="{{singleDrink.description}}"></textarea>
+                </div>
+                <div class="input-field col s12">
+                  <label class="active" for="price">Price</label>
+                  <input class="validate" type="text" id="price" name="price"
+                         value="{{singleDrink.price}}">
+                </div>
+                <div class="input-field col s12">
+                  <label class="active" for="sizes">Sizes</label>
+                  <input class="validate" type="text" id="sizes" name="sizes"
+                         value="{{singleDrink.sizes}}">
+                </div>
+                <div class="input-field col s12">
+                  <label class="active" for="extras">Extras</label>
+                  <input class="validate" type="text" id="extras" name="extras"
+                         value="{{singleDrink.extras}}">
+                </div>
+                <div class="input-field col s12">
+                  <label class="active" for="note">Note</label>
+                  <textarea class="validate materialize-textarea"
+                            type="text" id="note" name="note"
+                            value="{{singleDrink.note}}"></textarea>
+                </div>
+                <div class="input-field col s12">
+                  <input type="submit"
+                         class="col s12 btn waves-effect waves-light teal lighten-1"
+                         value="Update Drink">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</template>
+
+<template name="menuForm">
+  <div class="row">
+    <div class="col s12">
+      <h5>Add Drink</h5>
+    </div>
+    <div class="col s12">
+      <div class="card-panel clearfix">
+        <p>This form is used to build your menu one drink at a time.</p>
+        <div class="col s12">
+          <h5><b><i>Drink Information</i></b></h5>
+
+          <input placeholder="Drink Name" id="drinkName" type="text"/>
+          <label>Drink Description (Optional):</label>
+          <textarea class="materialize-textarea" id="drinkDesc"></textarea>
+          <input placeholder="Drink Price (example 2.99)" id="drinkPrice"
+                 type="text"/>
+
+          <div class="file-field input-field">
+            <div class="btn waves-effect waves-light">
+              <span>Image Upload</span>
+              <input type="file" multiple>
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text"
+                     placeholder="Upload image of drink">
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12 m6">
+          <h5><b><i>Available Drink Sizes</i></b></h5>
+
+          <input placeholder="Drink size (example: 12oz)" type="text"
+                 id="drinkSize"
+                 value=""> {{#each drinkSizeInput}} {{{this}}} {{/each}}
+          <button class="btn right-align waves-effect waves-light"
+                  id="addMoreSizes" name="button">+ Size
+          </button>
+          <button class="btn right-align waves-effect waves-light"
+                  id="removeASize" name="button">- Size
+          </button>
+        </div>
+
+        <div class="col s12 m6">
+          <h5><b><i>Available Drink Extras</i></b></h5>
+
+          <input placeholder="Drink Extra (example: whip cream)" type="text"
+                 id="drinkExtra"
+                 value=""> {{#each drinkExtrasInput}} {{{this}}} {{/each}}
+          <button class="btn right-align waves-effect waves-light"
+                  id="addMoreExtras" name="button">+ Extra
+          </button>
+          <button class="btn right-align waves-effect waves-light"
+                  id="removeAExtra" name="button">- Extra
+          </button>
+        </div>
+
+        <div class="col s12">
+          <h5><b><i>Special Note</i></b></h5>
+
+          <label for="note">Special note to customer about drink
+                            (optional)</label>
+        <textarea class="materialize-textarea"
+                  placeholder='Example: "This product contains peanuts."'
+                  id="note"></textarea>
+          <br/>
+          <br/>
+          <div class="row">
+            <button class="btn col s12 waves-effect waves-light" id="addDrink">
+              Add
+              Drink
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

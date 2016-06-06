@@ -7,39 +7,13 @@
   </div>
 </template>
 
-<template name="menuDashboard">
-  <div class="center-align">
-    <ul class="col s10 offset-s1">
-      {{#each getMenuInfo}}
-        <li class="card-panel valign-wrapper clearfix">
-
-          <img class="col s4 responsive-img valign rounded-corners"
-               src="/business-img/cappuccino.jpg" width="100%"/>
-
-          <div class="col s8 ">
-            <h3 class="title">{{singleDrink.name}}</h3>
-            <p
-              class="left-align col s10 offset-s1">{{singleDrink.description}}</p>
-            <h5 class="col s12"><b><i>${{singleDrink.price}}</i></b></h5>
-            <button class="right btn waves-effect waves-light">Order</button>
-          </div>
-
-        </li>
-      {{/each}}
-    </ul>
-  </div>
-
-</template>
-
 <template name="menuIndexMenu">
   <div class="center-align">
     <ul class="col s10 offset-s1">
       {{#each getMenu}}
         <li class="card-panel valign-wrapper clearfix">
-
           <img class="col s4 responsive-img valign rounded-corners"
                src="/business-img/cappuccino.jpg" width="100%"/>
-
           <div class="col s8 ">
             <h3 class="title">{{singleDrink.name}}</h3>
             <p
@@ -47,89 +21,8 @@
             <h5 class="col s12"><b><i>${{singleDrink.price}}</i></b></h5>
             <button class="right btn waves-effect waves-light">Order</button>
           </div>
-
         </li>
       {{/each}}
     </ul>
-  </div>
-
-</template>
-
-<template name="menuForm">
-  <div class="row">
-    <div class="col s12">
-      <p>
-        This form is used to build your menu one drink at a time.
-      </p>
-
-      <div class="card-panel clearfix">
-        <div class="card-panel">
-          <h5><b><i>Drink Information</i></b></h5>
-
-          <input placeholder="Drink Name" id="drinkName" type="text"/>
-
-          <label>Drink Description (Optional):</label>
-          <textarea id="drinkDesc"></textarea>
-
-          <input placeholder="Drink Price (example 2.99)" id="drinkPrice"
-                 type="text"/>
-
-          <div class="file-field input-field">
-            <div class="btn waves-effect waves-light">
-              <span>Image Upload</span>
-              <input type="file" multiple>
-            </div>
-            <div class="file-path-wrapper">
-              <input class="file-path validate" type="text"
-                     placeholder="Upload image of drink">
-            </div>
-          </div>
-        </div>
-
-        <div class="card-panel">
-          <h5><b><i>Available Drink Sizes</i></b></h5>
-
-          <input placeholder="Drink size (example: 12oz)" type="text"
-                 id="drinkSize"
-                 value=""> {{#each drinkSizeInput}} {{{this}}} {{/each}}
-
-
-          <button class="btn right-align waves-effect waves-light"
-                  id="addMoreSizes" name="button">
-            Add More Sizes
-          </button>
-          <button class="btn right-align waves-effect waves-light"
-                  id="removeASize" name="button">
-            Remove A Size
-          </button>
-        </div>
-
-        <div class="card-panel">
-          <h5><b><i>Available Drink Extras</i></b></h5>
-
-          <input placeholder="Drink Extra (example: whip cream)" type="text"
-                 id="drinkExtra"
-                 value=""> {{#each drinkExtrasInput}} {{{this}}} {{/each}}
-
-          <button class="btn right-align waves-effect waves-light"
-                  id="addMoreExtras" name="button">
-            Add More Extras
-          </button>
-          <button class="btn right-align waves-effect waves-light"
-                  id="removeAExtra" name="button">
-            Remove A Extra
-          </button>
-        </div>
-
-        <label>Special note to customer about drink (optional)</label>
-        <textarea placeholder='Example: "This product contains peanuts."'
-                  id="note"></textarea>
-        <br/>
-        <br/>
-        <button class="btn col s12 waves-effect waves-light" id="addDrink">Add
-                                                                           Drink
-        </button>
-      </div>
-    </div>
   </div>
 </template>

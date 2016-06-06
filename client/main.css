@@ -46,6 +46,15 @@ body {
   overflow : auto;
 }
 
+/*remove orange edit/delete text color*/
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+  color : #26A69A;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating):hover {
+  color : #B2DFDB; /*teal lighten-4*/
+}
+
 /*UI - LOCATIONS*/
 /*Search input underline color*/
 #map-container {
