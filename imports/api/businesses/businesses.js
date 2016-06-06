@@ -95,7 +95,8 @@ Schemas.Search = new SimpleSchema({
     type    : Number,
     autoform: {
       label       : 'Radius (miles)',
-      preserveForm: true
+      preserveForm: true,
+      value: 30
     }
   }
 });
