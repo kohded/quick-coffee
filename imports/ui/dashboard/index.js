@@ -245,3 +245,21 @@ Template.menuForm.helpers({
     return Session.get('drinkExtrasForm');
   }
 });
+
+Template.dashboardIndexOrders.onRendered(function() {
+  $('.collapsible').collapsible({});
+});
+
+Template.dashboardIndexOrders.helpers({
+  getOrder  : function() {
+    //Get order collection
+  }
+});
+
+Template.dashboardIndexOrders.events({
+  'click #remove-order' : function(event) {
+    event.preventDefault();
+    //Remove order from collection
+    //Meteor.call('removeOrder', );
+  }
+});
