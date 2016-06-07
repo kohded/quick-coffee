@@ -25,12 +25,11 @@ Template.locationsIndex.onRendered(function() {
       });
     }
 
-    //Get users current geolocation
-    var latLng = Geolocation.latLng();
-
     //Google Maps initial settings and options.
     if(GoogleMaps.loaded()) {
-      var latlng  = new google.maps.LatLng(latLng.lat, latLng.lng);
+      var lat     = 47.383871;
+      var lng     = -122.235361;
+      var latlng  = new google.maps.LatLng(lat, lng);
       var options = {
         zoom                  : 12,
         streetViewControl     : true,
@@ -136,12 +135,13 @@ var addMarkersToMap = function(businesses) {
         business.location.state + ', ' +
         business.location.zip + '<br>' +
         business.businessPhone + '<br><br>' +
-        '<a href="'+business.businessName+'/menu" id="viewMenu" class="btn' +
+        '<a href="' + business.businessName +
+        '/menu" id="viewMenu" class="btn' +
         ' waves-effect waves-light">Menu</a>';
 
       //InfoWindow
       var infowindow = new google.maps.InfoWindow({
-        content:businessInfo
+        content: businessInfo
       });
 
       infowindow.open(marker.map, marker);
