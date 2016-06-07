@@ -20,7 +20,7 @@ Meteor.publish('searchBusinesses', function(businesses) {
           type       : 'Point',
           coordinates: [centerLon, centerLat]
         },
-        $maxDistance: radius * 1000,
+        $maxDistance: (radius * 1000) * .621371,
         $minDistance: 0
       }
     }
