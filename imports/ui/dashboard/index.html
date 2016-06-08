@@ -290,7 +290,7 @@
     </div>
     <div class="col s12">
       <ul class="collapsible popout" data-collapsible="accordion">
-      <!--{{#each getOrder}}-->
+      {{#each getOrder}}
         <li>
           <div class="collapsible-header">
             <i class="material-icons">receipt</i>Order
@@ -306,21 +306,18 @@
               </tr>
               </thead>
               <tbody>
+                {{#each cart}}
               <tr>
-                <td>Latte</td>
-                <td>12oz</td>
-                <td>Milk</td>
+                <td>{{name}}</td>
+                <td>{{sizes}}</td>
+                <td>{{extras}}</td>
               </tr>
-              <tr>
-                <td>Mocha</td>
-                <td>20oz</td>
-                <td>Sugar</td>
-              </tr>
+              {{/each}}
               </tbody>
             </table>
           </div>
         </li>
-        <!--{{/each}}-->
+        {{/each}}
       </ul>
     </div>
   </div>

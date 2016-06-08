@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { Schemas } from './businesses.js';
 import { Businesses } from './businesses.js';
+import {Checkout } from './checkout.js';
 import { Menu } from './menu.js';
 
 Meteor.methods({
@@ -33,5 +34,11 @@ Meteor.methods({
         }
       }
     });
+  },
+  insertOrder: function(orderObj){
+        Checkout.insert(orderObj);
+    },
+  removeOrder: function(orderId){
+    Checkout.remove({_id:orderId});
   }
 });

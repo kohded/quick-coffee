@@ -1,12 +1,8 @@
 import { Template } from 'meteor/templating';
-
 import './index.html';
-import {
-  Businesses
-} from '../../api/businesses/businesses.js';
-import {
-  Menu
-} from '../../api/businesses/menu.js';
+import {Checkout } from '../../api/businesses/checkout.js';
+import { Businesses } from '../../api/businesses/businesses.js';
+import { Menu } from '../../api/businesses/menu.js';
 
 Template.dashboardIndexTabs.onRendered(function() {
   //Load tabs
@@ -253,6 +249,20 @@ Template.dashboardIndexOrders.onRendered(function() {
 Template.dashboardIndexOrders.helpers({
   getOrder  : function() {
     //Get order collection
+
+    var businessId;
+    var business = Businesses.find({
+      userId: Meteor.userId()
+    });
+
+    business.forEach(function(doc) {
+      businessId = doc._id;
+    });
+
+    Meteor.subscribe("checkout", businessId);
+
+    return Checkout.find({businessId:businessId});
+
   }
 });
 
@@ -260,6 +270,6 @@ Template.dashboardIndexOrders.events({
   'click #remove-order' : function(event) {
     event.preventDefault();
     //Remove order from collection
-    //Meteor.call('removeOrder', );
+    Meteor.call('removeOrder', this._id );
   }
 });
